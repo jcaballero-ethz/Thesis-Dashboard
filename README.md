@@ -147,10 +147,10 @@ All HTMLs are in `analysis/htmls_uso/`. They must be served via HTTP — see [Vi
 | `stress_events_multi_alpha_historical.html` | Same for historical dataset. |
 | `sp_flow_interactive.html` | Interactive European map for each filtered event (future): shadow prices per country and transmission flows per link, with a timeline scrubber over event hours. |
 | `sp_flow_interactive_historical.html` | Same for historical. |
-| `cluster_climate_future.html` | Radar / bar charts of the 4 climate clusters (future): mean anomaly profiles per zone. |
-| `cluster_climate_historical.html` | Same for historical. |
-| `cluster_operational_future.html` | Same but for operational clusters (future), including net transmission and storage features. |
-| `cluster_operational_historical.html` | Same for historical. |
+| `europe_maps_climate_future.html` | Radar / bar charts of the 4 climate clusters (future): mean anomaly profiles per zone. |
+| `europe_maps_climate_historical.html` | Same for historical. |
+| `europe_maps_operational_future.html` | Same but for operational clusters (future), including net transmission and storage features. |
+| `europe_maps_operational_historical.html` | Same for historical. |
 | `cluster_combined_future.html` | Combined view: for each event, shows both its climate and operational cluster, with feature breakdown. |
 | `cluster_combined_historical.html` | Same for historical. |
 | `cluster_comparison.html` | Side-by-side comparison of future vs historical cluster profiles. |
