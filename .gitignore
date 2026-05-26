@@ -1,5 +1,6 @@
 *
 !.gitignore
+!.nojekyll
 !README.md
 !analysis/
 !analysis/**
