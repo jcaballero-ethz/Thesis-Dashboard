@@ -151,8 +151,8 @@ All HTMLs are in `analysis/htmls_uso/`. They must be served via HTTP — see [Vi
 | `europe_maps_climate_historical.html` | Same for historical. |
 | `europe_maps_operational_future.html` | Same but for operational clusters (future), including net transmission and storage features. |
 | `europe_maps_operational_historical.html` | Same for historical. |
-| `cluster_combined_future.html` | Combined view: for each event, shows both its climate and operational cluster, with feature breakdown. |
-| `cluster_combined_historical.html` | Same for historical. |
+| `europe_maps_combined_future.html` | Combined view: for each event, shows both its climate and operational cluster, with feature breakdown. |
+| `europe_maps_combined_historical.html` | Same for historical. |
 | `cluster_comparison.html` | Side-by-side comparison of future vs historical cluster profiles. |
 | `correlation_zones_interactive.html` | Interactive correlation matrix of country-level wind anomalies, used to justify the 13-zone definition. |
 | `cost_duration_scatter.html` | Scatter plot: event cost vs duration, coloured by cluster, for both datasets. |
