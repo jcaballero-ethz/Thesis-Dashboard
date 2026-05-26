@@ -195,7 +195,7 @@ html = f"""<!DOCTYPE html>
     <span id="fShareVal" style="font-size:12px;color:var(--text2);min-width:42px">0.000%</span>
     <span style="font-size:11px;color:var(--text3)" id="shareUnit">(% of cross-sc. cost)</span>
     <label style="margin-left:6px">min duration ≥</label>
-    <input type="range" id="fDur" min="0" max="720" step="24" value="0" style="width:110px">
+    <input type="range" id="fDur" min="0" max="720" step="1" value="0" style="width:110px">
     <span id="fDurVal" style="font-size:12px;color:var(--text2);min-width:42px">0 h</span>
   </div>
 
