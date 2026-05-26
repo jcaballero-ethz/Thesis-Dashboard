@@ -1,0 +1,8 @@
+*
+!.gitignore
+!README.md
+!analysis/
+!analysis/**
+!CSVs/
+!CSVs/**
+**/.DS_Store

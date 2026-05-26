@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ratio Analysis — ρ = cost share / duration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#f4f6fb; --white:#fff; --text:#1a1d2e; --muted:#6b7280;
+    --border:#e5e7ef; --accent:#4776e6; --red:#e74c3c; --amber:#f39c12;
+  }
+  html, body { height:100%; overflow:hidden; font-family:'Inter',sans-serif;
+                background:var(--bg); color:var(--text); }
+  body { display:flex; flex-direction:column; padding:16px 24px; gap:12px; }
+
+  .top-bar { display:flex; align-items:baseline; justify-content:space-between; flex-shrink:0; }
+  h1 { font-size:18px; font-weight:700; }
+  .subtitle { font-size:12px; color:var(--muted); margin-top:2px; flex-shrink:0; }
+
+  .toggle-group { display:flex; background:var(--white); border:1px solid var(--border);
+                   border-radius:10px; overflow:hidden; flex-shrink:0; }
+  .toggle-btn { padding:7px 20px; font-size:12px; font-weight:500; color:var(--muted);
+                 cursor:pointer; border:none; background:none; font-family:'Inter',sans-serif;
+                 transition:all 0.15s; }
+  .toggle-btn.active { background:var(--accent); color:#fff; font-weight:600; }
+
+  .main { display:flex; gap:16px; flex:1; min-height:0; }
+
+  #chart-wrap { flex:1; min-width:0; background:var(--white); border:1px solid var(--border);
+                 border-radius:14px; padding:12px; display:flex; flex-direction:column; }
+  #chart-title { font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px; flex-shrink:0; }
+  #line-chart { flex:1; min-height:0; }
+
+  #table-wrap { width:620px; flex-shrink:0; background:var(--white); border:1px solid var(--border);
+                 border-radius:14px; padding:16px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; }
+  #bar-section { flex-shrink:0; }
+  #bar-section h3 { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase;
+                     letter-spacing:0.8px; margin-bottom:6px; }
+  #drop-bar { width:100%; }
+  #table-wrap h3 { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase;
+                    letter-spacing:0.8px; margin-bottom:12px; }
+
+  table { width:100%; border-collapse:collapse; font-size:11px; }
+  th { font-size:10px; font-weight:600; color:var(--muted); text-align:center;
+        padding:4px 6px; border-bottom:2px solid var(--border); white-space:nowrap; }
+  th.left { text-align:left; }
+  td { padding:5px 6px; text-align:center; border-bottom:1px solid var(--border); }
+  td.ev-label { text-align:left; font-weight:600; font-size:11px; white-space:nowrap; }
+  td.pers { color:var(--muted); font-size:10px; }
+  .cell-inner { display:flex; flex-direction:column; align-items:center; gap:1px; }
+  .rho-val { font-weight:600; font-size:11px; }
+  .pct-val { font-size:9px; color:var(--muted); }
+  .drop-big { background:#fde8e8; border-radius:4px; }
+  .drop-big .rho-val { color:var(--red); }
+  .drop-big .pct-val { color:var(--red); font-weight:600; }
+  .drop-mod { background:#fef3cd; border-radius:4px; }
+  .drop-mod .pct-val { color:var(--amber); font-weight:600; }
+  .alpha-25 { background:#e8f0fe; }
+  .alpha-25 .rho-val { color:var(--accent); }
+  tr:hover td { background:#f8f9ff; }
+  .legend-note { font-size:10px; color:var(--muted); margin-top:10px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>
+    <h1>Ratio Analysis — ρ = cost share / duration (%/day)</h1>
+    <p class="subtitle">Top-10 most persistent events across all α values · vertical line marks α=25% (chosen threshold)</p>
+  </div>
+  <div class="toggle-group">
+    <button class="toggle-btn active" onclick="setDataset('future',this)">Future</button>
+    <button class="toggle-btn"        onclick="setDataset('historical',this)">Historical</button>
+  </div>
+</div>
+
+<div class="main">
+  <div id="chart-wrap">
+    <div id="chart-title">ρ vs α — one line per event (hover for details)</div>
+    <div id="line-chart"></div>
+  </div>
+  <div id="table-wrap">
+    <h3>ρ values &amp; drop vs previous α</h3>
+    <table id="ratio-table">
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <p class="legend-note">
+      <span style="display:inline-block;width:10px;height:10px;background:#fde8e8;border-radius:2px;margin-right:4px"></span>drop ≥ 30% vs prev α &nbsp;
+      <span style="display:inline-block;width:10px;height:10px;background:#fef3cd;border-radius:2px;margin-right:4px"></span>drop 15–30% &nbsp;
+      <span style="display:inline-block;width:10px;height:10px;background:#e8f0fe;border-radius:2px;margin-right:4px"></span>α = 25%
+    </p>
+    <div id="bar-section">
+      <h3>Biggest drop concentration by α transition</h3>
+      <div id="drop-bar"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ALL    = {"future": [{"label": "sc3", "persistence": 7, "rho": [0.0752, 0.07055, 0.06641, 0.05125, 0.03649, 0.03572, 0.02916], "cs": [0.5136, 0.6081, 0.6389, 0.7027, 0.7951, 0.8008, 0.8676], "dur": [6.83, 8.62, 9.62, 13.71, 21.79, 22.42, 29.75], "pct_chg": [null, -6.2, -5.9, -22.8, -28.8, -2.1, -18.4]}, {"label": "sc45", "persistence": 7, "rho": [0.08558, 0.08558, 0.07467, 0.07391, 0.0421, 0.02933, 0.02064], "cs": [0.4313, 0.4313, 0.451, 0.4523, 0.5313, 0.5915, 0.7274], "dur": [5.04, 5.04, 6.04, 6.12, 12.62, 20.17, 35.25], "pct_chg": [null, 0.0, -12.7, -1.0, -43.0, -30.3, -29.6]}, {"label": "sc11", "persistence": 7, "rho": [0.18865, 0.11912, 0.08234, 0.08187, 0.0392, 0.03185, 0.02738], "cs": [0.3226, 0.3669, 0.415, 0.4159, 0.4947, 0.5293, 0.5566], "dur": [1.71, 3.08, 5.04, 5.08, 12.62, 16.62, 20.33], "pct_chg": [null, -36.9, -30.9, -0.6, -52.1, -18.7, -14.0]}, {"label": "sc44", "persistence": 7, "rho": [0.11546, 0.11546, 0.08794, 0.0417, 0.03686, 0.02736, 0.02672], "cs": [0.3129, 0.3129, 0.3623, 0.6096, 0.6407, 0.7764, 0.7836], "dur": [2.71, 2.71, 4.12, 14.62, 17.38, 28.38, 29.33], "pct_chg": [null, 0.0, -23.8, -52.6, -11.6, -25.8, -2.3]}, {"label": "sc13", "persistence": 6, "rho": [0.15292, 0.11891, 0.11801, 0.0586, 0.04861, 0.02643, 0.02245], "cs": [0.2615, 0.3175, 0.3198, 0.4518, 0.4739, 0.611, 0.6613], "dur": [1.71, 2.67, 2.71, 7.71, 9.75, 23.12, 29.46], "pct_chg": [null, -22.2, -0.8, -50.3, -17.0, -45.6, -15.1]}, {"label": "sc27", "persistence": 5, "rho": [0.0773, 0.07228, 0.06571, 0.0653, 0.03903, 0.02831, 0.02827], "cs": [0.2837, 0.2949, 0.3259, 0.3265, 0.4309, 0.5204, 0.5207], "dur": [3.67, 4.08, 4.96, 5.0, 11.04, 18.38, 18.42], "pct_chg": [null, -6.5, -9.1, -0.6, -40.2, -27.5, -0.1]}, {"label": "sc9", "persistence": 5, "rho": [0.10308, 0.06825, 0.03587, 0.0337, 0.02162, 0.01674, 0.01598], "cs": [0.1072, 0.1447, 0.3408, 0.3552, 0.4782, 0.5914, 0.6126], "dur": [1.04, 2.12, 9.5, 10.54, 22.12, 35.33, 38.33], "pct_chg": [null, -33.8, -47.4, -6.0, -35.8, -22.6, -4.5]}, {"label": "sc24", "persistence": 4, "rho": [0.09307, 0.05435, 0.05291, 0.04101, 0.03536, 0.0325, 0.03244], "cs": [0.2485, 0.3826, 0.3926, 0.4376, 0.4625, 0.4768, 0.4772], "dur": [2.67, 7.04, 7.42, 10.67, 13.08, 14.67, 14.71], "pct_chg": [null, -41.6, -2.6, -22.5, -13.8, -8.1, -0.2]}, {"label": "sc47", "persistence": 3, "rho": [0.1107, 0.10963, 0.09177, 0.07333, 0.06313, 0.05483, 0.04011], "cs": [0.2856, 0.2927, 0.3368, 0.3454, 0.3548, 0.363, 0.3859], "dur": [2.58, 2.67, 3.67, 4.71, 5.62, 6.62, 9.62], "pct_chg": [null, -1.0, -16.3, -20.1, -13.9, -13.1, -26.8]}, {"label": "sc25", "persistence": 3, "rho": [0.0876, 0.08875, 0.08841, 0.05868, 0.03754, 0.02824, 0.02207], "cs": [0.2698, 0.3257, 0.328, 0.3544, 0.402, 0.4436, 0.5004], "dur": [3.08, 3.67, 3.71, 6.04, 10.71, 15.71, 22.67], "pct_chg": [null, 1.3, -0.4, -33.6, -36.0, -24.8, -21.8]}], "historical": [{"label": "sc22", "persistence": 7, "rho": [0.22918, 0.20322, 0.187, 0.07589, 0.039, 0.03359, 0.03316], "cs": [0.4767, 0.5426, 0.561, 0.727, 1.11, 1.2106, 1.2188], "dur": [2.08, 2.67, 3.0, 9.58, 28.46, 36.04, 36.75], "pct_chg": [null, -11.3, -8.0, -59.4, -48.6, -13.9, -1.3]}, {"label": "sc53", "persistence": 7, "rho": [0.2202, 0.10536, 0.09255, 0.07211, 0.06382, 0.05511, 0.05117], "cs": [0.4492, 0.7112, 0.7515, 0.8595, 0.8986, 0.939, 0.9553], "dur": [2.04, 6.75, 8.12, 11.92, 14.08, 17.04, 18.67], "pct_chg": [null, -52.2, -12.2, -22.1, -11.5, -13.6, -7.1]}, {"label": "sc14", "persistence": 7, "rho": [0.10826, 0.10826, 0.07762, 0.04091, 0.03981, 0.03579, 0.03275], "cs": [0.3291, 0.3291, 0.385, 0.7483, 0.7648, 0.8067, 0.8407], "dur": [3.04, 3.04, 4.96, 18.29, 19.21, 22.54, 25.67], "pct_chg": [null, 0.0, -28.3, -47.3, -2.7, -10.1, -8.5]}, {"label": "sc57", "persistence": 7, "rho": [0.37493, 0.1612, 0.1612, 0.06771, 0.05008, 0.02729, 0.02727], "cs": [0.2662, 0.3353, 0.3353, 0.6378, 0.7222, 1.3449, 1.3453], "dur": [0.71, 2.08, 2.08, 9.42, 14.42, 49.29, 49.33], "pct_chg": [null, -57.0, 0.0, -58.0, -26.0, -45.5, -0.1]}, {"label": "sc52", "persistence": 5, "rho": [0.21654, 0.06386, 0.06388, 0.06328, 0.05112, 0.02664, 0.02576], "cs": [0.2252, 0.4202, 0.4261, 0.4297, 0.4662, 0.7828, 0.8015], "dur": [1.04, 6.58, 6.67, 6.79, 9.12, 29.38, 31.12], "pct_chg": [null, -70.5, 0.0, -0.9, -19.2, -47.9, -3.3]}, {"label": "sc16", "persistence": 5, "rho": [0.15247, 0.11963, 0.11786, 0.08071, 0.03822, 0.0281, 0.02314], "cs": [0.247, 0.3589, 0.363, 0.41, 0.6035, 0.776, 0.884], "dur": [1.62, 3.0, 3.08, 5.08, 15.79, 27.62, 38.21], "pct_chg": [null, -21.5, -1.5, -31.5, -52.6, -26.5, -17.7]}, {"label": "sc25", "persistence": 4, "rho": [0.12626, 0.11142, 0.10095, 0.06839, 0.05985, 0.05209, 0.04092], "cs": [0.3308, 0.3621, 0.4038, 0.4644, 0.4836, 0.5037, 0.5422], "dur": [2.62, 3.25, 4.0, 6.79, 8.08, 9.67, 13.25], "pct_chg": [null, -11.8, -9.4, -32.3, -12.5, -13.0, -21.4]}, {"label": "sc35", "persistence": 4, "rho": [0.24364, 0.18234, 0.17551, 0.05961, 0.03875, 0.03673, 0.03065], "cs": [0.2144, 0.2881, 0.2931, 0.5436, 0.704, 0.7239, 0.7881], "dur": [0.88, 1.58, 1.67, 9.12, 18.17, 19.71, 25.71], "pct_chg": [null, -25.2, -3.7, -66.0, -35.0, -5.2, -16.6]}, {"label": "sc15", "persistence": 3, "rho": [0.15975, 0.15975, 0.15975, 0.05603, 0.05507, 0.05035, 0.04685], "cs": [0.3259, 0.3259, 0.3259, 0.446, 0.4499, 0.4617, 0.4704], "dur": [2.04, 2.04, 2.04, 7.96, 8.17, 9.17, 10.04], "pct_chg": [null, 0.0, 0.0, -64.9, -1.7, -8.6, -7.0]}, {"label": "sc38", "persistence": 3, "rho": [0.06472, 0.05747, 0.057, 0.055, 0.04397, 0.04299, 0.04003], "cs": [0.299, 0.3494, 0.3802, 0.3872, 0.4564, 0.4604, 0.4719], "dur": [4.62, 6.08, 6.67, 7.04, 10.38, 10.71, 11.79], "pct_chg": [null, -11.2, -0.8, -3.5, -20.1, -2.2, -6.9]}]};
+const ALPHAS = [10, 15, 20, 25, 30, 35, 40];
+const COLORS = ["#3498db", "#e74c3c", "#2ecc71", "#9b59b6", "#f39c12", "#1abc9c", "#e67e22", "#34495e", "#e91e63", "#00bcd4"];
+const HL_A   = 25;
+
+let currentDs = 'future';
+let selectedIdx = null;
+
+function setDataset(ds, btn) {
+  currentDs = ds;
+  selectedIdx = null;
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function selectEvent(idx) {
+  const n      = ALL[currentDs].length;
+  const events = ALL[currentDs];
+  if (selectedIdx === idx) {
+    selectedIdx = null;
+    // restore all traces to full interactivity
+    const updates = events.map((ev, i) => ({
+      opacity:       [1],
+      hovertemplate: ['%{text}<extra></extra>'],
+    }));
+    updates.forEach((u, i) => Plotly.restyle('line-chart', u, [i]));
+    document.querySelectorAll('#tbody tr').forEach(r => r.style.background = '');
+  } else {
+    selectedIdx = idx;
+    events.forEach((ev, i) => {
+      Plotly.restyle('line-chart', {
+        opacity:       [i === idx ? 1 : 0.07],
+        hovertemplate: [i === idx ? '%{text}<extra></extra>' : '<extra></extra>'],
+      }, [i]);
+    });
+    document.querySelectorAll('#tbody tr').forEach((r, i) => {
+      r.style.background = i === idx ? '#eef2ff' : '';
+    });
+  }
+}
+
+function render() {
+  const events = ALL[currentDs];
+  renderChart(events);
+  renderTable(events);
+  renderDropBar(events);
+}
+
+function renderDropBar(events) {
+  // transitions: [10→15, 15→20, 20→25, 25→30, 30→35, 35→40]
+  const transitions = [];
+  for (let i = 1; i < ALPHAS.length; i++)
+    transitions.push({from: ALPHAS[i-1], to: ALPHAS[i], label: `${ALPHAS[i-1]}%→${ALPHAS[i]}%`});
+
+  const counts = transitions.map(() => 0);
+  const evNames = transitions.map(() => []);
+
+  events.forEach(ev => {
+    const bd = biggestDrop(ev);
+    if (!bd) return;
+    const ti = transitions.findIndex(t => t.from === bd.from && t.to === bd.to);
+    if (ti >= 0) { counts[ti]++; evNames[ti].push(`${ev.label} (${bd.chg.toFixed(1)}%)`); }
+  });
+
+  const maxCount = Math.max(...counts, 1);
+  const colors = counts.map((c, i) => {
+    const isHL = transitions[i].from === HL_A || transitions[i].to === HL_A;
+    return c === maxCount ? '#e74c3c' : isHL ? '#4776e6' : '#94a3b8';
+  });
+
+  Plotly.react('drop-bar', [{
+    type: 'bar',
+    x: transitions.map(t => t.label),
+    y: counts,
+    marker: { color: colors, borderRadius: 4 },
+    hovertemplate: '<b>%{x}</b><br>%{y} event(s)<extra></extra>',
+  }], {
+    height: 160,
+    margin: {t:8, r:8, b:40, l:30},
+    paper_bgcolor: '#ffffff', plot_bgcolor: '#ffffff',
+    font: {family:'Inter', size:10},
+    xaxis: { tickfont:{size:10}, gridcolor:'#f0f0f0' },
+    yaxis: { tickfont:{size:10}, gridcolor:'#f0f0f0', zeroline:false,
+              dtick:1, range:[0, maxCount + 0.5] },
+    showlegend: false,
+  }, {responsive:true, displayModeBar:false});
+}
+
+function renderChart(events) {
+  const traces = events.map((ev, i) => ({
+    type: 'scatter', mode: 'lines+markers', name: ev.label,
+    x: ALPHAS,
+    y: ev.rho,
+    line: { color: COLORS[i % COLORS.length], width: 2 },
+    marker: { size: 7, color: COLORS[i % COLORS.length] },
+    text: ev.rho.map((r, j) => r !== null
+      ? `<b>${ev.label}</b> at α=${ALPHAS[j]}%<br>ρ = ${r.toFixed(5)} %/day<br>cost share = ${ev.cs[j]}%<br>duration = ${ev.dur[j]}d`
+      : `${ev.label}: not in top-10 at α=${ALPHAS[j]}%`),
+    hovertemplate: '%{text}<extra></extra>',
+    connectgaps: false,
+    persistence: ev.persistence,
+  }));
+
+  // vertical line at alpha=25
+  const hlIdx  = ALPHAS.indexOf(HL_A);
+  const hlX    = HL_A;
+  const yVals  = events.flatMap(e => e.rho.filter(v => v !== null));
+  const yMax   = yVals.length ? Math.max(...yVals) * 1.08 : 1;
+
+  traces.push({
+    type: 'scatter', mode: 'lines', name: 'α = 25% (chosen)',
+    x: [hlX, hlX], y: [0, yMax],
+    line: { color: '#4776e6', width: 1.5, dash: 'dot' },
+    hoverinfo: 'skip', showlegend: true,
+  });
+
+  const layout = {
+    xaxis: {
+      title: { text: 'α (%)', font: {size:12,family:'Inter'} },
+      tickvals: ALPHAS, ticktext: ALPHAS.map(a => a+'%'),
+      tickfont: {size:11,family:'Inter'}, gridcolor:'#f0f0f0', zeroline:false,
+    },
+    yaxis: {
+      title: { text: 'ρ (%/day)', font: {size:12,family:'Inter'} },
+      tickfont: {size:11,family:'Inter'}, gridcolor:'#f0f0f0', zeroline:false,
+      rangemode: 'tozero',
+    },
+    legend: { font:{size:11,family:'Inter'}, orientation:'v', x:1.01, y:1,
+               bgcolor:'rgba(255,255,255,0.9)', bordercolor:'#e5e7ef', borderwidth:1 },
+    margin: {t:10, r:130, b:50, l:60},
+    paper_bgcolor:'#ffffff', plot_bgcolor:'#ffffff',
+    font: {family:'Inter'}, hovermode:'closest',
+  };
+  Plotly.react('line-chart', traces, layout, {responsive:true, displayModeBar:false});
+}
+
+function biggestDrop(ev) {
+  let worstChg = 0, worstJ = -1;
+  ev.pct_chg.forEach((chg, j) => {
+    if (chg !== null && chg < worstChg) { worstChg = chg; worstJ = j; }
+  });
+  if (worstJ === -1) return null;
+  return { j: worstJ, from: ALPHAS[worstJ-1], to: ALPHAS[worstJ], chg: worstChg };
+}
+
+function renderTable(events) {
+  // header
+  const thead = document.getElementById('thead');
+  thead.innerHTML = '<tr><th class="left">Event</th><th class="left">Pers.</th>' +
+    ALPHAS.map(a => `<th${a===HL_A?' class="alpha-25"':''}>${a}%</th>`).join('') +
+    '<th class="left" style="padding-left:8px">Biggest drop</th></tr>';
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = events.map((ev, ei) => {
+    const bd = biggestDrop(ev);
+    const cells = ev.rho.map((r, j) => {
+      const a      = ALPHAS[j];
+      const chg    = ev.pct_chg[j];
+      const isHL   = a === HL_A;
+      const isBigDrop = bd && j === bd.j;
+      const isBig  = chg !== null && chg <= -30;
+      const isMod  = chg !== null && chg > -30 && chg <= -15;
+      let cls = isHL ? 'alpha-25' : isBig ? 'drop-big' : isMod ? 'drop-mod' : '';
+      if (r === null) return `<td class="${cls}" style="color:var(--muted)">—</td>`;
+      const chgStr = chg !== null ? (chg >= 0 ? `+${chg.toFixed(1)}%` : `${chg.toFixed(1)}%`) : '';
+      const outline = isBigDrop ? ' outline:2px solid var(--red);outline-offset:-2px;border-radius:4px;' : '';
+      return `<td class="${cls}" style="${outline}"><div class="cell-inner">
+        <span class="rho-val">${r.toFixed(4)}</span>
+        ${chgStr ? `<span class="pct-val">${chgStr}</span>` : ''}
+      </div></td>`;
+    }).join('');
+    const bdCell = bd
+      ? `<td style="padding-left:8px;white-space:nowrap;font-size:10px">
+           <span style="color:var(--red);font-weight:600">${bd.chg.toFixed(1)}%</span>
+           <span style="color:var(--muted)"> at ${bd.from}%→${bd.to}%</span>
+         </td>`
+      : `<td style="color:var(--muted);padding-left:8px">—</td>`;
+    return `<tr>
+      <td class="ev-label" style="color:${COLORS[ei % COLORS.length]}">${ev.label}</td>
+      <td class="pers">${ev.persistence}/7</td>
+      ${cells}
+      ${bdCell}
+    </tr>`
+    .replace('<tr>', `<tr onclick="selectEvent(${ei})" style="cursor:pointer">`);
+  }).join('');
+}
+
+render();
+
+// click on a line in the chart to select/deselect that event
+document.getElementById('line-chart').on('plotly_click', function(data) {
+  const traceIdx = data.points[0].curveNumber;
+  const n = ALL[currentDs].length;
+  if (traceIdx < n) {   // ignore the vertical reference line trace
+    selectEvent(traceIdx);
+  }
+});
+</script>
+</body>
+</html>
