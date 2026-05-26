@@ -111,7 +111,8 @@
     <span style="font-size:11px;color:var(--text3)" id="shareUnit">(% of cross-sc. cost)</span>
     <label style="margin-left:6px">min duration ≥</label>
     <input type="range" id="fDur" min="0" max="720" step="1" value="0" style="width:110px">
-    <span id="fDurVal" style="font-size:12px;color:var(--text2);min-width:42px">0 h</span>
+    <input type="number" id="fDurVal" min="0" max="720" value="0" style="width:52px;font-size:12px;color:var(--text2);border:1px solid var(--border);border-radius:4px;padding:1px 4px;background:var(--bg)">
+    <span style="font-size:12px;color:var(--text2)">h</span>
   </div>
 
   <p class="section-label">event calendar — 60 scenarios × 365 days · shaded by cost share</p>
@@ -372,7 +373,13 @@ document.getElementById('fShare').addEventListener('input',e=>{
 });
 document.getElementById('fDur').addEventListener('input',e=>{
   fDurMin = +e.target.value;
-  document.getElementById('fDurVal').textContent=fDurMin+'h';
+  document.getElementById('fDurVal').value=fDurMin;
+  applyFilters();
+});
+document.getElementById('fDurVal').addEventListener('input',e=>{
+  let v=Math.min(720,Math.max(0,+e.target.value||0));
+  fDurMin=v;
+  document.getElementById('fDur').value=v;
   applyFilters();
 });
 window.addEventListener('resize',draw);
