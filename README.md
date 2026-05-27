@@ -184,9 +184,11 @@ Per-country feature table used for correlation analysis (zone definition). One r
 
 All HTMLs are in `analysis/htmls_uso/`. They must be served via HTTP — see [Viewing the dashboard](#viewing-the-dashboard).
 
+> **`thesis_dashboard.html`** is a hand-written iframe shell that embeds all the other HTML files as tabs. It does not generate any content of its own — each tab loads one of the files listed below. This is the only file you need to open; the rest are loaded automatically when you click their tab.
+
 | File | What it shows |
 |------|---------------|
-| `thesis_dashboard.html` | Main dashboard — hand-written iframe shell that embeds all other HTMLs. This is the entry point. |
+| `thesis_dashboard.html` | Main dashboard and entry point. |
 | `stress_events_multi_alpha.html` | Heatmap of stress events (future): scenarios × days of year, coloured by cost share. Sliders for α, cost share filter, duration filter, and season. Clicking an event shows details and links to the shadow price map. |
 | `stress_events_multi_alpha_historical.html` | Same for historical dataset. |
 | `sp_flow_interactive.html` | Interactive European map for each filtered event (future): shadow prices per country and transmission flows per link, with a timeline scrubber over event hours. |
