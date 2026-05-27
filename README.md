@@ -6,6 +6,24 @@ Bachelor Thesis — ETH Zurich, 2026
 
 ---
 
+## Quick start
+
+```bash
+git clone https://github.com/jcaballero-ethz/Thesis-Dashboard
+cd Thesis-Dashboard/analysis
+python -m http.server 8000
+```
+
+Then open in a browser:
+
+```
+http://localhost:8000/htmls_uso/thesis_dashboard.html
+```
+
+No additional dependencies or model outputs are needed to view the dashboard — all CSVs, JSONs, and HTMLs are included in the repository.
+
+---
+
 ## Overview
 
 This project identifies, characterizes, and clusters **weather-driven stress events** in the European energy system using two 60-scenario climate ensembles (future and historical) modelled with the **ZEN-garden** linear programming energy model.
