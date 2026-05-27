@@ -246,28 +246,12 @@ python analysis/codigos/compute/compute_clustering_operational.py
 ```
 CSVs_and_JSONs/future/features/features_alpha25_climate_future.csv
 CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
-CSVs_and_JSONs/future/features/features_alpha25_operational_future.csv
-CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
 CSVs_and_JSONs/historical/features/features_alpha25_climate_historical.csv
 CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
+CSVs_and_JSONs/future/features/features_alpha25_operational_future.csv
+CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
 CSVs_and_JSONs/historical/features/features_alpha25_operational_historical.csv
 CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv
-analysis/fotos/future/medoids/climate/medoid_wind_anom_future.png
-analysis/fotos/future/medoids/climate/medoid_pv_anom_future.png
-analysis/fotos/future/medoids/climate/medoid_heat_anom_future.png
-analysis/fotos/future/medoids/climate/cluster_medoids_climate_future.png
-analysis/fotos/future/medoids/operational/medoid_nettrans_anom_future.png
-analysis/fotos/future/medoids/operational/medoid_stor_discharge_anom_future.png
-analysis/fotos/future/medoids/operational/medoid_stor_level_anom_future.png
-analysis/fotos/future/medoids/operational/cluster_medoids_operational_future.png
-analysis/fotos/historical/medoids/climate/medoid_wind_anom_historical.png
-analysis/fotos/historical/medoids/climate/medoid_pv_anom_historical.png
-analysis/fotos/historical/medoids/climate/medoid_heat_anom_historical.png
-analysis/fotos/historical/medoids/climate/cluster_medoids_climate_historical.png
-analysis/fotos/historical/medoids/operational/medoid_nettrans_anom_historical.png
-analysis/fotos/historical/medoids/operational/medoid_stor_discharge_anom_historical.png
-analysis/fotos/historical/medoids/operational/medoid_stor_level_anom_historical.png
-analysis/fotos/historical/medoids/operational/cluster_medoids_operational_historical.png
 ```
 
 ### Step 3 — Compute shadow price and flow data
