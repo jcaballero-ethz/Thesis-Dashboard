@@ -131,9 +131,9 @@ Climate feature table for events at α = 25%, after clustering. One row per even
 
 | Column group | Description |
 |--------------|-------------|
-| `wind anom {zone}` | Wind capacity factor anomaly (percentage points) for each of the 13 geographic zones |
-| `pv anom {zone}` | PV capacity factor anomaly (percentage points) |
-| `heat anom {zone}` | Heat demand anomaly (percentage points) |
+| `wind anom {zone}` | Wind capacity factor anomaly (percentage) for each of the 13 geographic zones |
+| `pv anom {zone}` | PV capacity factor anomaly (percentage) |
+| `heat anom {zone}` | Heat demand anomaly (percentage) |
 | `sc`, `t_start`, `t_end` | Event identifier |
 | `cluster_climate` | Climate cluster label (1–4) assigned by K-Medoids |
 
@@ -151,7 +151,7 @@ Operational feature table for events at α = 25%. Same structure as the climate 
 ### `CSVs_and_JSONs/{future|historical}/features/features_alpha25_{future|historical}_per_country.csv`
 
 Per-country feature table used for correlation analysis (zone definition). One row per event, one column group per country (27 countries). Columns per country:
-- `wind anom {CC}`, `pv anom {CC}`, `heat anom {CC}` — anomalies (percentage points)
+- `wind anom {CC}`, `pv anom {CC}`, `heat anom {CC}` — anomalies (percentage)
 - `ngt {CC}` — net generation transport
 - `stor rate {CC}`, `stor diff {CC}` — storage metrics
 
