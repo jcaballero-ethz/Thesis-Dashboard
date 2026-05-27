@@ -13,8 +13,8 @@ Inputs:
   CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv
 
 Outputs:
-  htmls/fotos/filter_comparison_future_alpha25.png
-  htmls/fotos/filter_comparison_historical_alpha25.png
+  htmls/fotos/future/filter_comparison_future_alpha25.png
+  htmls/fotos/historical/filter_comparison_historical_alpha25.png
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -99,8 +99,8 @@ def event_stats(df, apply_filter):
 
 # ── Per-dataset figure ─────────────────────────────────────────────────────────
 DATASETS = [
-    (df_fut,  'Future',     'filter_comparison_future_alpha25.png'),
-    (df_hist, 'Historical', 'filter_comparison_historical_alpha25.png'),
+    (df_fut,  'Future',     'future/filter_comparison_future_alpha25.png'),
+    (df_hist, 'Historical', 'historical/filter_comparison_historical_alpha25.png'),
 ]
 
 PANEL_LABELS = ['(a)', '(b)']

@@ -13,7 +13,8 @@ Inputs:
   CSVs/historical/events_global_alpha/events_global_historical_alpha{XX}.csv  (7 files)
 
 Outputs:
-  htmls/fotos/filter_scatter_{future|historical}_alpha{XX}.png  (14 PNGs total)
+  htmls/fotos/future/filter_scatter_future_alpha{XX}.png      (7 PNGs)
+  htmls/fotos/historical/filter_scatter_historical_alpha{XX}.png  (7 PNGs)
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -31,7 +32,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 OUT_DIR = os.path.expanduser(OUT_DIR)
-os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(os.path.join(OUT_DIR, 'future'),     exist_ok=True)
+os.makedirs(os.path.join(OUT_DIR, 'historical'), exist_ok=True)
 
 DATASETS = {
     'future': {
@@ -85,7 +87,7 @@ for ds_name, paths in DATASETS.items():
         ax.grid(True, alpha=0.3)
         fig.tight_layout()
 
-        out = os.path.join(OUT_DIR, f'filter_scatter_{ds_name}_alpha{alpha:02d}.png')
+        out = os.path.join(OUT_DIR, ds_name, f'filter_scatter_{ds_name}_alpha{alpha:02d}.png')
         fig.savefig(out, dpi=150, bbox_inches='tight')
         plt.close()
         print(f'Saved: {out}')
