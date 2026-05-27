@@ -127,7 +127,7 @@ One file per α threshold (10, 15, 20, 25, 30, 35, 40). Each row is one stress e
 
 ### `CSVs_and_JSONs/{future|historical}/features/features_alpha25_climate_{future|historical}_clustered.csv`
 
-Climate feature table for events at α = 25%, after clustering. One row per event. Features are **anomalies relative to the scenario annual mean**, averaged over the event hours.
+Climate feature table for events at α = 25%, after clustering. One row per event.
 
 | Column group | Description |
 |--------------|-------------|
