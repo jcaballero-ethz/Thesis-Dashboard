@@ -198,9 +198,18 @@ python analysis/codigos/compute/compute_stress_events_historical.py
 ```
 CSVs_and_JSONs/future/events_global_alpha/events_global_alpha10.csv
 CSVs_and_JSONs/future/events_global_alpha/events_global_alpha15.csv
-...
+CSVs_and_JSONs/future/events_global_alpha/events_global_alpha20.csv
+CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv
+CSVs_and_JSONs/future/events_global_alpha/events_global_alpha30.csv
+CSVs_and_JSONs/future/events_global_alpha/events_global_alpha35.csv
 CSVs_and_JSONs/future/events_global_alpha/events_global_alpha40.csv
-CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{10..40}.csv
+CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha10.csv
+CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha15.csv
+CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha20.csv
+CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv
+CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha30.csv
+CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha35.csv
+CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha40.csv
 ```
 
 ### Step 2 — Compute correlation matrices and cluster events
@@ -214,9 +223,16 @@ python analysis/codigos/compute/plot_correlation_matrix_historical.py
 
 **Outputs:**
 ```
-analysis/fotos/{future|historical}/correlation_matrix/corr_{future|historical}_{wind_anom|pv_anom|heat_anom}.png
-analysis/fotos/{future|historical}/correlation_matrix/corr_{future|historical}_combined.png
-CSVs_and_JSONs/{future|historical}/features/features_alpha25_{future|historical}_per_country.csv
+analysis/fotos/future/correlation_matrix/corr_future_wind_anom.png
+analysis/fotos/future/correlation_matrix/corr_future_pv_anom.png
+analysis/fotos/future/correlation_matrix/corr_future_heat_anom.png
+analysis/fotos/future/correlation_matrix/corr_future_combined.png
+analysis/fotos/historical/correlation_matrix/corr_historical_wind_anom.png
+analysis/fotos/historical/correlation_matrix/corr_historical_pv_anom.png
+analysis/fotos/historical/correlation_matrix/corr_historical_heat_anom.png
+analysis/fotos/historical/correlation_matrix/corr_historical_combined.png
+CSVs_and_JSONs/future/features/features_alpha25_future_per_country.csv
+CSVs_and_JSONs/historical/features/features_historical_per_country.csv
 ```
 
 Then compute features per zone and cluster events using K-Medoids with PCA (90% variance retained):
@@ -233,9 +249,25 @@ CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
 CSVs_and_JSONs/future/features/features_alpha25_operational_future.csv
 CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
 CSVs_and_JSONs/historical/features/features_alpha25_climate_historical.csv
-...
-analysis/fotos/{future|historical}/medoids/{climate|operational}/medoid_*_anom_*.png
-analysis/fotos/{future|historical}/medoids/{climate|operational}/cluster_medoids_*.png
+CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
+CSVs_and_JSONs/historical/features/features_alpha25_operational_historical.csv
+CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv
+analysis/fotos/future/medoids/climate/medoid_wind_anom_future.png
+analysis/fotos/future/medoids/climate/medoid_pv_anom_future.png
+analysis/fotos/future/medoids/climate/medoid_heat_anom_future.png
+analysis/fotos/future/medoids/climate/cluster_medoids_climate_future.png
+analysis/fotos/future/medoids/operational/medoid_nettrans_anom_future.png
+analysis/fotos/future/medoids/operational/medoid_stor_discharge_anom_future.png
+analysis/fotos/future/medoids/operational/medoid_stor_level_anom_future.png
+analysis/fotos/future/medoids/operational/cluster_medoids_operational_future.png
+analysis/fotos/historical/medoids/climate/medoid_wind_anom_historical.png
+analysis/fotos/historical/medoids/climate/medoid_pv_anom_historical.png
+analysis/fotos/historical/medoids/climate/medoid_heat_anom_historical.png
+analysis/fotos/historical/medoids/climate/cluster_medoids_climate_historical.png
+analysis/fotos/historical/medoids/operational/medoid_nettrans_anom_historical.png
+analysis/fotos/historical/medoids/operational/medoid_stor_discharge_anom_historical.png
+analysis/fotos/historical/medoids/operational/medoid_stor_level_anom_historical.png
+analysis/fotos/historical/medoids/operational/cluster_medoids_operational_historical.png
 ```
 
 ### Step 3 — Compute shadow price and flow data
@@ -257,12 +289,55 @@ CSVs_and_JSONs/historical/sp_flow_data_historical.json  (~24 MB)
 Reads CSVs, writes static PNGs to `analysis/fotos/`.
 
 ```bash
-python analysis/codigos/compute/plot_filter_calendar.py       # calendar heatmap of filtered events
-python analysis/codigos/compute/plot_filter_scatter.py        # duration vs cost_share scatter at each α
-python analysis/codigos/compute/plot_cluster_maps.py          # medoid anomaly maps per cluster
-python analysis/codigos/compute/plot_ratio_analysis.py        # intensity ratio ρ = cost_share/duration vs α
-python analysis/codigos/compute/plot_cost_duration_scatter.py # event cost vs duration per dataset
-python analysis/codigos/compute/plot_scatter_fut_vs_hist.py   # combined future vs historical scatter
+python analysis/codigos/compute/plot_filter_calendar.py
+python analysis/codigos/compute/plot_filter_scatter.py
+python analysis/codigos/compute/plot_cluster_maps.py
+python analysis/codigos/compute/plot_ratio_analysis.py
+python analysis/codigos/compute/plot_cost_duration_scatter.py
+python analysis/codigos/compute/plot_scatter_fut_vs_hist.py
+```
+
+**Outputs:**
+```
+analysis/fotos/future/filter_comparison_future_alpha25.png
+analysis/fotos/historical/filter_comparison_historical_alpha25.png
+analysis/fotos/future/scatter_plots/filter_scatter_future.png
+analysis/fotos/future/scatter_plots/filter_scatter_future_alpha10.png
+analysis/fotos/future/scatter_plots/filter_scatter_future_alpha15.png
+analysis/fotos/future/scatter_plots/filter_scatter_future_alpha20.png
+analysis/fotos/future/scatter_plots/filter_scatter_future_alpha25.png
+analysis/fotos/future/scatter_plots/filter_scatter_future_alpha30.png
+analysis/fotos/future/scatter_plots/filter_scatter_future_alpha35.png
+analysis/fotos/future/scatter_plots/filter_scatter_future_alpha40.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha10.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha15.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha20.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha25.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha30.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha35.png
+analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha40.png
+analysis/fotos/future/medoids/climate/medoid_wind_anom_future.png
+analysis/fotos/future/medoids/climate/medoid_pv_anom_future.png
+analysis/fotos/future/medoids/climate/medoid_heat_anom_future.png
+analysis/fotos/future/medoids/climate/cluster_medoids_climate_future.png
+analysis/fotos/future/medoids/operational/medoid_nettrans_anom_future.png
+analysis/fotos/future/medoids/operational/medoid_stor_discharge_anom_future.png
+analysis/fotos/future/medoids/operational/medoid_stor_level_anom_future.png
+analysis/fotos/future/medoids/operational/cluster_medoids_operational_future.png
+analysis/fotos/historical/medoids/climate/medoid_wind_anom_historical.png
+analysis/fotos/historical/medoids/climate/medoid_pv_anom_historical.png
+analysis/fotos/historical/medoids/climate/medoid_heat_anom_historical.png
+analysis/fotos/historical/medoids/climate/cluster_medoids_climate_historical.png
+analysis/fotos/historical/medoids/operational/medoid_nettrans_anom_historical.png
+analysis/fotos/historical/medoids/operational/medoid_stor_discharge_anom_historical.png
+analysis/fotos/historical/medoids/operational/medoid_stor_level_anom_historical.png
+analysis/fotos/historical/medoids/operational/cluster_medoids_operational_historical.png
+analysis/fotos/future/ratio_analysis_future.png
+analysis/fotos/historical/ratio_analysis_historical.png
+analysis/fotos/future/scatter_plots/cost_duration_scatter_future.png
+analysis/fotos/historical/scatter_plots/cost_duration_scatter_historical.png
+analysis/fotos/scatter_fut_vs_hist.png
 ```
 
 ### Step 5 — Generate interactive HTMLs
