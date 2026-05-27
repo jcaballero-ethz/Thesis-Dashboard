@@ -36,7 +36,7 @@ This yields ~40 events per dataset at α = 25%.
 | **Future** | `20260202_GF_future_with_cooling` | 60 climate scenarios for a ~2050 European energy system with high renewables penetration and cooling demand |
 | **Historical** | `20260202_GF_historical_with_cooling` | 60 climate scenarios for a present-day European energy system |
 
-Each dataset contains 60 scenarios (`scenario_0` … `scenario_59`), each representing one year (8760 hours) under a different climate realization. The energy system infrastructure (capacities, topology) is the same across all scenarios within a dataset; only the weather-driven inputs (wind, solar, demand) vary.
+Each dataset contains 60 scenarios (`scenario_1` … `scenario_60`), each representing one year (8760 hours) under a different climate realization. The energy system infrastructure (capacities, topology) is the same across all scenarios within a dataset; only the weather-driven inputs (wind, solar, demand) vary.
 
 ---
 
