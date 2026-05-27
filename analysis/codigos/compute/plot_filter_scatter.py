@@ -14,7 +14,9 @@ Inputs:
 
 Outputs:
   htmls/fotos/future/scatter_plots/filter_scatter_future_alpha{XX}.png      (7 PNGs)
+  htmls/fotos/future/scatter_plots/filter_scatter_future.png                (1 combined grid)
   htmls/fotos/historical/scatter_plots/filter_scatter_historical_alpha{XX}.png  (7 PNGs)
+  htmls/fotos/historical/scatter_plots/filter_scatter_historical.png             (1 combined grid)
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -91,5 +93,39 @@ for ds_name, paths in DATASETS.items():
         fig.savefig(out, dpi=150, bbox_inches='tight')
         plt.close()
         print(f'Saved: {out}')
+
+# ── Combined grid: all α values in one figure per dataset ────────────────────
+for ds_name, paths in DATASETS.items():
+    fig, axes = plt.subplots(2, 4, figsize=(20, 10))
+    axes_flat = axes.ravel()
+
+    for i, alpha in enumerate(ALPHAS):
+        ax = axes_flat[i]
+        df = pd.read_csv(paths[alpha])
+        passed = (df['cost_share_cross'] >= THRESH_CS) & (df['duration_days'] >= THRESH_DUR)
+        pct = passed.sum() / len(df) * 100
+
+        ax.scatter(df.loc[~passed, 'duration_days'], df.loc[~passed, 'cost_share_cross'],
+                   color=COLOR_FAIL, s=12, alpha=0.7, zorder=2)
+        ax.scatter(df.loc[passed,  'duration_days'], df.loc[passed,  'cost_share_cross'],
+                   color=COLOR_PASS, s=12, alpha=0.9, zorder=3)
+        ax.axvline(THRESH_DUR, color='firebrick', linewidth=1.2, linestyle='--')
+        ax.axhline(THRESH_CS,  color='steelblue', linewidth=1.2, linestyle='--')
+        ax.set_title(f'α = {alpha}%', fontsize=11, fontweight='bold')
+        ax.set_xlabel('Duration (days)', fontsize=9)
+        ax.set_ylabel('Cost share (%)', fontsize=9)
+        ax.text(0.97, 0.97, f'{passed.sum()}/{len(df)}\n({pct:.1f}%)',
+                transform=ax.transAxes, ha='right', va='top', fontsize=9,
+                bbox=dict(boxstyle='round,pad=0.2', facecolor='white',
+                          edgecolor='black', alpha=0.8))
+        ax.grid(True, alpha=0.3)
+
+    axes_flat[-1].set_visible(False)  # hide 8th cell (only 7 alphas)
+    fig.suptitle(f'Filter scatter — {ds_name} (all α)', fontsize=14, fontweight='bold')
+    fig.tight_layout()
+    out = os.path.join(OUT_DIR, ds_name, 'scatter_plots', f'filter_scatter_{ds_name}.png')
+    fig.savefig(out, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f'Saved: {out}')
 
 print('Done.')
