@@ -12,16 +12,16 @@ Inputs:
   CSVs/future/features/features_alpha25_future_per_country.csv  (per-country anomaly features)
 
 Outputs:
-  htmls/fotos/future/corr_future_wind_anom.png
-  htmls/fotos/future/corr_future_pv_anom.png
-  htmls/fotos/future/corr_future_heat_anom.png
-  htmls/fotos/future/corr_future_combined.png  (average of 3 matrices, with zone boxes)
+  htmls/fotos/future/correlation_matrix/corr_future_wind_anom.png
+  htmls/fotos/future/correlation_matrix/corr_future_pv_anom.png
+  htmls/fotos/future/correlation_matrix/corr_future_heat_anom.png
+  htmls/fotos/future/correlation_matrix/corr_future_combined.png  (average of 3 matrices, with zone boxes)
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Output type: PNG figures only
 CSV     = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_future_per_country.csv')
-OUT_DIR = os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/fotos/future')
+OUT_DIR = os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/fotos/future/correlation_matrix')
 # ──────────────────────────────────────────────────────────────────────────────
 
 import os
