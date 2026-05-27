@@ -12,22 +12,36 @@ This project identifies, characterizes, and clusters **weather-driven stress eve
 
 ### What is a stress event?
 
-A stress event is a contiguous period of hours during which the energy system is under simultaneous high cost pressure across multiple nodes and carriers. It is identified using a **stress indicator**:
+A stress event is a continuous time interval during which the energy system is under high cost pressure, identified through a shadow-price-based stress indicator applied globally across the full climate ensemble.
+
+**Step 1 — Stress indicator.** For each timestep `t` and climate scenario `s`, a timestep-level stress cost is computed as:
 
 ```
-Φ_{t,s} = Σ_{n,c}  d_{c,n,t,s} · λ_{c,n,t,s}
+Φ_{t,s} = Σ_{n ∈ N} Σ_{c ∈ C}  d_{c,n,t,s} · λ_{c,n,t,s}
 ```
 
 where:
 - `d_{c,n,t,s}` — demand of carrier `c` at node `n`, hour `t`, scenario `s` (GWh)
-- `λ_{c,n,t,s}` — shadow price of carrier `c` at node `n`, hour `t`, scenario `s` (M€/GWh, from the nodal energy balance dual)
-- The product gives the cost attributed to that carrier-node combination
+- `λ_{c,n,t,s}` — shadow price of the nodal energy balance constraint for carrier `c` at node `n`, hour `t`, scenario `s` (M€/GWh)
+- The sum runs over all nodes `N` and all modeled energy carriers `C`
 
-Hours where Φ exceeds the top **α%** of the scenario distribution are selected. Contiguous selected hours (with gaps ≤ τ_gap = 48 h) form one event. Events are then filtered by:
-- `cost_share_cross ≥ 0.2%` — the event must represent at least 0.2% of total cross-scenario cost
+`Φ_{t,s}` is a shadow-price-weighted demand indicator: it measures how much of the total demand is served under high marginal system-cost conditions at a given timestep and scenario.
+
+**Step 2 — Global cross-scenario selection.** All `|T| × |Ω|` timestep–scenario pairs are pooled into a single global set and ranked in descending order of `Φ_{t,s}`. Starting from the highest-ranked pair, pairs are added sequentially to the selected set `S_α` until their cumulative stress cost covers a fraction α of the total cross-scenario stress cost `Φ_tot`:
+
+```
+Σ_{(t,s) ∈ S_α} Φ_{t,s}  ≥  α · Φ_tot
+```
+
+`α` is thus a **cost-coverage parameter**: it controls what fraction of the total ensemble stress cost is represented by the selected timestep–scenario pairs. It is not a percentile threshold.
+
+**Step 3 — Event construction.** Within each scenario, the selected timesteps are ordered chronologically. Consecutive selected timesteps separated by at most `τ_gap = 48 h` are merged into one event. The event spans the full continuous interval from its first to its last selected timestep (including any intermediate non-selected hours).
+
+**Step 4 — Filtering.** Candidate events are retained only if they satisfy both:
+- `cost_share_cross ≥ 0.2%` — the event's cumulative stress cost is at least 0.2% of `Φ_tot`
 - `duration ≥ 1 day`
 
-This yields ~40 events per dataset at α = 25%.
+This yields ~40 retained events per dataset at α = 25%.
 
 ### The two datasets
 
