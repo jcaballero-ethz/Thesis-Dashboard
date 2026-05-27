@@ -118,7 +118,7 @@ One file per α threshold (10, 15, 20, 25, 30, 35, 40). Each row is one stress e
 | Column | Description |
 |--------|-------------|
 | `rank` | Ranking by event cost (1 = most expensive) |
-| `sc` | Scenario number (0–59) |
+| `sc` | Scenario number (1–60) |
 | `t_start` | First hour of the event (0–8759) |
 | `t_end` | Last hour of the event (0–8759) |
 | `duration_days` | Event duration in days |
@@ -137,7 +137,7 @@ Climate feature table for events at α = 25%, after clustering. One row per even
 | `sc`, `t_start`, `t_end` | Event identifier |
 | `cluster_climate` | Climate cluster label (1–4) assigned by K-Medoids |
 
-The 13 zones are defined by Ward hierarchical clustering of country-level wind anomaly correlations at a threshold r ≥ 0.65: Nordics_N, Nordics_S, Baltics, British_Isles, NW_Continent, Central_W, Central_E, East_N, Iberia, Med_East_N, Med_East_S, Italy, Greece.
+The 13 zones are defined by inspecting the Ward-ordered combined correlation matrix (average of wind, PV, and heat anomaly correlations across the 27 countries): Nordics_N, Nordics_S, Baltics, British_Isles, NW_Continent, Central_W, Central_E, East_N, Iberia, Med_East_N, Med_East_S, Italy, Greece.
 
 ### `CSVs_and_JSONs/{future|historical}/features/features_alpha25_operational_{future|historical}_clustered.csv`
 
@@ -180,7 +180,7 @@ All HTMLs are in `analysis/htmls_uso/`. They must be served via HTTP — see [Vi
 | `europe_maps_combined_future.html` | Combined view: for each event, shows both its climate and operational cluster, with feature breakdown. |
 | `europe_maps_combined_historical.html` | Same for historical. |
 | `cluster_comparison.html` | Side-by-side comparison of future vs historical cluster profiles. |
-| `correlation_zones_interactive.html` | Interactive correlation matrix of country-level wind anomalies, used to justify the 13-zone definition. |
+| `correlation_zones_interactive.html` | Interactive correlation matrix of country-level wind, PV, and heat anomalies across 27 countries, used to justify the 13-zone definition. |
 | `cost_duration_scatter.html` | Scatter plot: event cost vs duration, coloured by cluster, for both datasets. |
 | `ratio_analysis.html` | Ratio of renewable generation to demand during events vs scenario average. |
 
@@ -189,6 +189,10 @@ All HTMLs are in `analysis/htmls_uso/`. They must be served via HTTP — see [Vi
 ## Execution pipeline
 
 Run all commands from the **repository root** (`~/Desktop/Bachelor Thesis/`). Each step depends on the outputs of the previous one.
+
+> **Note on ZEN-garden dependency:** Steps 1, 2 (correlation matrices), and 3 require access to the ZEN-garden model outputs, which are not included in this repository. All CSVs and JSONs produced by these steps are already committed, so **Steps 2 (clustering), 4, and 5 can be run directly without ZEN-garden**.
+
+> **Note on hardcoded paths:** All scripts have `~/Desktop/Bachelor Thesis/` hardcoded as the repository root and `~/Desktop/ZEN-garden model/outputs/` as the model output location. If you clone the repository to a different path, update the path constants at the top of each script accordingly.
 
 ### Step 1 — Identify stress events
 
@@ -373,7 +377,7 @@ analysis/htmls_uso/ratio_analysis.html
 The HTML files use relative paths between them and must be served over HTTP. Opening them directly as local files (`file://`) will cause iframes and cross-file references to fail.
 
 ```bash
-cd "analysis"
+cd ~/Desktop/Bachelor\ Thesis/analysis
 python -m http.server 8000
 ```
 
