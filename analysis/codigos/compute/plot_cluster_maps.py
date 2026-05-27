@@ -19,8 +19,8 @@ Inputs:
   CSVs/historical/features/features_alpha25_operational_historical_clustered.csv
 
 Outputs:
-  htmls/fotos/future/medoid_{feature}_future.png    (6 PNGs)
-  htmls/fotos/historical/medoid_{feature}_historical.png  (6 PNGs)
+  htmls/fotos/future/medoids/medoid_{feature}_future.png    (6 PNGs)
+  htmls/fotos/historical/medoids/medoid_{feature}_historical.png  (6 PNGs)
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -43,8 +43,8 @@ from sklearn.metrics import pairwise_distances
 
 SHAPEFILE = os.path.expanduser(SHAPEFILE)
 OUT_DIR   = os.path.expanduser(OUT_DIR)
-os.makedirs(os.path.join(OUT_DIR, 'future'),     exist_ok=True)
-os.makedirs(os.path.join(OUT_DIR, 'historical'), exist_ok=True)
+os.makedirs(os.path.join(OUT_DIR, 'future',     'medoids'), exist_ok=True)
+os.makedirs(os.path.join(OUT_DIR, 'historical', 'medoids'), exist_ok=True)
 
 CODE_MAP = {
     'AT': 'AUT', 'BE': 'BEL', 'BG': 'BGR', 'CH': 'CHE', 'CZ': 'CZE',
@@ -319,7 +319,7 @@ for cl_type, cfg in CONFIGS.items():
                 fig.tight_layout()
 
             slug = feat.replace(' ', '_')
-            out  = os.path.join(OUT_DIR, ds_name, f'medoid_{slug}_{ds_name}.png')
+            out  = os.path.join(OUT_DIR, ds_name, 'medoids', f'medoid_{slug}_{ds_name}.png')
             fig.savefig(out, dpi=150, bbox_inches='tight')
             plt.close()
             print(f'Saved: {out}')
