@@ -4,6 +4,6 @@
 !README.md
 !analysis/
 !analysis/**
-!CSVs/
-!CSVs/**
+!CSVs_and_JSONs/
+!CSVs_and_JSONs/**
 **/.DS_Store
