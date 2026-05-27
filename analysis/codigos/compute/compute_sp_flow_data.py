@@ -6,16 +6,13 @@ transmission flows for all filtered stress events, for both future and historica
 datasets. The output JSONs are read by generate_sp_flow_map.py to build the
 interactive map HTML.
 
-The JSONs are stored outside the git repo (~/ CSVs/) because they are large
-(~100 MB each) and contain per-hour data for all event timesteps.
-
 Inputs:
   - ZEN-garden output folders (future + historical)
   - events_global_alpha25.csv / events_global_historical_alpha25.csv
 
 Outputs:
-  ~/CSVs/sp_flow_data_future.json
-  ~/CSVs/sp_flow_data_historical.json
+  CSVs/sp_flow_data_future.json
+  CSVs/sp_flow_data_historical.json
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -28,12 +25,12 @@ DATASETS = {
     'future': {
         'path':       '~/Desktop/ZEN-garden model/outputs/20260202_GF_future_with_cooling',
         'events_csv': f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv',
-        'out_json':   '~/CSVs/sp_flow_data_future.json',
+        'out_json':   '~/Desktop/Bachelor Thesis/CSVs/sp_flow_data_future.json',
     },
     'historical': {
         'path':       '~/Desktop/ZEN-garden model/outputs/20260202_GF_historical_with_cooling',
         'events_csv': f'~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv',
-        'out_json':   '~/CSVs/sp_flow_data_historical.json',
+        'out_json':   '~/Desktop/Bachelor Thesis/CSVs/sp_flow_data_historical.json',
     },
 }
 # ──────────────────────────────────────────────────────────────────────────────
