@@ -41,7 +41,7 @@ where:
 - `cost_share_cross ≥ 0.2%` — the event's cumulative stress cost is at least 0.2% of `Φ_tot`
 - `duration ≥ 1 day`
 
-This yields ~40 retained events per dataset at α = 25%.
+This yields 40 retained events (future) and 42 (historical) at α = 25%.
 
 ### The two datasets
 
