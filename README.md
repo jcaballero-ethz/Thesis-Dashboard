@@ -141,12 +141,18 @@ The 13 zones are defined by Ward hierarchical clustering of country-level wind a
 
 ### `CSVs_and_JSONs/{future|historical}/features/features_alpha25_operational_{future|historical}_clustered.csv`
 
-Operational feature table for events at α = 25%. Same structure as the climate table but features include:
-- `wind anom`, `pv anom`, `heat anom` per zone (same as climate table)
-- `nettrans anom {zone}` — net transmission import anomaly (GWh/h) for each zone
-- `stor_diff` — pan-European storage level difference between end and start of event (GWh)
-- `stor_rate` — average net storage discharge rate during the event (GWh/h)
-- `cluster_operational` — operational cluster label (1–4)
+Operational feature table for events at α = 25%, after clustering. One row per event.
+
+| Column group | Description |
+|--------------|-------------|
+| `wind anom {zone}` | Wind capacity factor anomaly (percentage) for each of the 13 geographic zones |
+| `pv anom {zone}` | PV capacity factor anomaly (percentage) |
+| `heat anom {zone}` | Heat demand anomaly (percentage) |
+| `nettrans anom {zone}` | Net transmission import anomaly (GWh/h) for each of the 13 zones |
+| `stor_diff` | Pan-European storage level difference between end and start of event (GWh) |
+| `stor_rate` | Average net storage discharge rate during the event (GWh/h) |
+| `sc`, `t_start`, `t_end` | Event identifier |
+| `cluster_operational` | Operational cluster label (1–4) assigned by K-Medoids |
 
 ### `CSVs_and_JSONs/{future|historical}/features/features_alpha25_{future|historical}_per_country.csv`
 
