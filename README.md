@@ -418,7 +418,7 @@ http://localhost:8000/htmls_uso/thesis_dashboard.html
 | τ_gap (max gap within event) | 48 h | `TAU_GAP` in `compute_stress_events_*.py` |
 | cost_share filter | ≥ 0.2% | `THRESH_CS` in each `generate_*.py` and `compute_sp_flow_data.py` |
 | duration filter | ≥ 1 day | `THRESH_DUR` in each `generate_*.py` and `compute_sp_flow_data.py` |
-| Number of zones | 13 | Hard-coded zone list in `compute_clustering_climate.py` and `compute_clustering_operational.py` |
+| Number of zones | 13 | Derived by inspecting `plot_correlation_matrix_future/historical.py` output; then hard-coded in `compute_clustering_climate.py` and `compute_clustering_operational.py` |
 | Number of clusters | 4 | `K_OPT = 4` in `compute_clustering_climate.py` and `compute_clustering_operational.py` |
 | PCA variance retained | 90% | `PCA_VAR = 0.90` in the clustering scripts |
 | Scenarios per dataset | 60 | Determined by the ZEN-garden model output |
