@@ -112,7 +112,7 @@ for ds_key, cfg in DATASETS.items():
     ax.set_ylabel('ρ = cost share / duration  (% per day)', fontsize=12)
     ax.set_title(f'Intensity ratio ρ vs α — {cfg["label"]}', fontsize=13,
                  fontweight='bold')
-    ax.axvline(25, color='gray', linewidth=1.4, linestyle='--', zorder=1, label='α = 25% (main)')
+    ax.axvline(25, color='#001f5b', linewidth=1.4, linestyle='--', zorder=1, label='α = 25% (main)')
     ax.set_xticks(ALPHAS)
     ax.grid(True, alpha=0.3)
     ax.legend(fontsize=9, frameon=True, loc='upper right',
