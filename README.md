@@ -219,7 +219,7 @@ CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha40.c
 
 ### Step 2 — Compute correlation matrices and cluster events
 
-First, compute per-country feature tables and plot correlation matrices (needed to validate the 13-zone definition):
+First, compute per-country feature tables and plot correlation matrices. Countries are ordered by Ward hierarchical clustering of the combined correlation matrix — the 13-zone definition is derived by inspecting this output:
 
 ```bash
 python analysis/codigos/compute/plot_correlation_matrix_future.py
