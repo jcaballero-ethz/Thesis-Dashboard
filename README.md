@@ -231,7 +231,6 @@ analysis/fotos/historical/correlation_matrix/corr_historical_wind_anom.png
 analysis/fotos/historical/correlation_matrix/corr_historical_pv_anom.png
 analysis/fotos/historical/correlation_matrix/corr_historical_heat_anom.png
 analysis/fotos/historical/correlation_matrix/corr_historical_combined.png
-CSVs_and_JSONs/future/features/features_alpha25_future_per_country.csv
 CSVs_and_JSONs/historical/features/features_historical_per_country.csv
 ```
 
@@ -339,6 +338,24 @@ python analysis/codigos/generate/generate_cluster_comparison.py
 python analysis/codigos/generate/generate_corr_interactive.py
 python analysis/codigos/generate/generate_cost_duration_scatter.py
 python analysis/codigos/generate/generate_ratio_html.py
+```
+
+**Outputs:**
+```
+analysis/htmls_uso/stress_events_multi_alpha.html
+analysis/htmls_uso/stress_events_multi_alpha_historical.html
+analysis/htmls_uso/sp_flow_interactive.html
+analysis/htmls_uso/sp_flow_interactive_historical.html
+analysis/htmls_uso/europe_maps_climate_future.html
+analysis/htmls_uso/europe_maps_climate_historical.html
+analysis/htmls_uso/europe_maps_operational_future.html
+analysis/htmls_uso/europe_maps_operational_historical.html
+analysis/htmls_uso/europe_maps_combined_future.html
+analysis/htmls_uso/europe_maps_combined_historical.html
+analysis/htmls_uso/cluster_comparison.html
+analysis/htmls_uso/correlation_zones_interactive.html
+analysis/htmls_uso/cost_duration_scatter.html
+analysis/htmls_uso/ratio_analysis.html
 ```
 
 > **Note on the generate scripts:** each script is a Python f-string that embeds HTML, CSS, and JavaScript. The `{{}}` double-brace syntax is the Python f-string escape for literal `{}` in the JavaScript output. Do not edit the generated HTML files directly — always edit the corresponding `generate_*.py` script and re-run it.

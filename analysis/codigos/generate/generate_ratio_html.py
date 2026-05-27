@@ -444,7 +444,7 @@ document.getElementById('line-chart').on('plotly_click', function(data) {{
 </body>
 </html>"""
 
-out = os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/ratio_analysis.html')
+out = os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/ratio_analysis.html')
 os.makedirs(os.path.dirname(out), exist_ok=True)
 with open(out, 'w', encoding='utf-8') as f:
     f.write(html)
