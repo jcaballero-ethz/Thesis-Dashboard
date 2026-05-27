@@ -163,12 +163,9 @@ Operational feature table for events at α = 25%, after clustering. One row per 
 
 | Column group | Description |
 |--------------|-------------|
-| `wind anom {zone}` | Wind capacity factor anomaly (percentage) for each of the 13 geographic zones |
-| `pv anom {zone}` | PV capacity factor anomaly (percentage) |
-| `heat anom {zone}` | Heat demand anomaly (percentage) |
 | `nettrans anom {zone}` | Net transmission import anomaly (GWh/h) for each of the 13 zones |
-| `stor_diff` | Pan-European storage level difference between end and start of event (GWh) |
-| `stor_rate` | Average net storage discharge rate during the event (GWh/h) |
+| `stor level anom {zone}` | Storage level anomaly (GWh) for each of the 13 zones |
+| `stor discharge anom {zone}` | Storage discharge anomaly (GWh/h) for each of the 13 zones |
 | `sc`, `t_start`, `t_end` | Event identifier |
 | `cluster_operational` | Operational cluster label (1–4) assigned by K-Medoids |
 
