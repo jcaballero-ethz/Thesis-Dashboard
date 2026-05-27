@@ -29,8 +29,9 @@ PATH         = '~/Desktop/ZEN-garden model/outputs/20260202_GF_historical_with_c
 OUT_DIR      = '~/Desktop/Bachelor Thesis/analysis/fotos/historical/correlation_matrix'
 FEATURES_CSV = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_historical_per_country.csv'
 EVENTS_CSV   = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv'
-THRESH_CS    = 0.2   # minimum cost_share_cross (%) to keep an event
-THRESH_DUR   = 1.0   # minimum duration (days) to keep an event
+THRESH_CS    = 0.2
+THRESH_DUR   = 1.0
+N_ZONES      = 13  # number of cluster boxes to draw in the combined plot
 # ──────────────────────────────────────────────────────────────────────────────
 
 import logging
@@ -48,6 +49,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import seaborn as sns
+from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
+from scipy.spatial.distance import squareform
 
 PATH         = os.path.expanduser(PATH)
 OUT_DIR      = os.path.expanduser(OUT_DIR)
@@ -64,23 +67,6 @@ os.makedirs(OUT_DIR, exist_ok=True)
 COUNTRIES = ['AT','BE','BG','CH','CZ','DE','DK','EE','EL','ES',
              'FI','FR','HR','HU','IE','IT','LT','LV','NL',
              'NO','PL','PT','RO','SE','SI','SK','UK']
-
-# Zone definitions — used for ordering and boundary boxes in the combined plot
-ZONES = {
-    'Norway':        ['NO'],
-    'Baltics_FI':    ['EE', 'LV', 'FI'],
-    'Nordics_S':     ['DK', 'SE'],
-    'British_Isles': ['IE', 'UK'],
-    'NW_Continent':  ['DE', 'BE', 'NL'],
-    'Med_East_N':    ['BG', 'RO'],
-    'Med_East_S':    ['HR', 'SI'],
-    'Greece':        ['EL'],
-    'Italy':         ['IT'],
-    'Iberia':        ['ES', 'PT'],
-    'Central_W':     ['CH', 'FR'],
-    'East_N':        ['LT', 'PL'],
-    'Central_E':     ['HU', 'SK', 'AT', 'CZ'],
-}
 
 # ── Load and filter stress events ─────────────────────────────────────────────
 df_ev = pd.read_csv(EVENTS_CSV)
@@ -163,15 +149,31 @@ else:
     print(f'Features saved to {FEATURES_CSV}')
 
 # ── Per-feature correlation matrices ─────────────────────────────────────────
-ordered = [c for zone_countries in ZONES.values() for c in zone_countries]
-
 corr_matrices = {}
 for feat in ['wind anom', 'pv anom', 'heat anom']:
     cols = [f'{feat} {c}' for c in COUNTRIES]
     data = df_feat[cols].values
-    corr         = pd.DataFrame(data, columns=COUNTRIES).corr().fillna(0)
+    corr = pd.DataFrame(data, columns=COUNTRIES).corr().fillna(0)
     corr_matrices[feat] = corr
-    corr_ordered = corr.loc[ordered, ordered]
+
+# ── Ward ordering from combined correlation matrix ────────────────────────────
+corr_combined = pd.DataFrame(
+    np.mean([m.values for m in corr_matrices.values()], axis=0),
+    index=COUNTRIES, columns=COUNTRIES,
+)
+dist_sq = np.clip(1 - corr_combined.values, 0, 2)
+np.fill_diagonal(dist_sq, 0)
+Z     = linkage(squareform(dist_sq), method='ward')
+dend  = dendrogram(Z, labels=COUNTRIES, no_plot=True)
+order = dend['ivl']
+
+clust_labels     = fcluster(Z, t=N_ZONES, criterion='maxclust')
+country_to_clust = dict(zip(COUNTRIES, clust_labels))
+ordered_clusters = [country_to_clust[c] for c in order]
+
+# ── Per-feature plots ─────────────────────────────────────────────────────────
+for feat, corr in corr_matrices.items():
+    corr_ordered = corr.loc[order, order]
 
     fig, ax = plt.subplots(figsize=(18, 16))
     sns.heatmap(
@@ -184,19 +186,14 @@ for feat in ['wind anom', 'pv anom', 'heat anom']:
     ax.set_xticklabels(ax.get_xticklabels(), fontsize=11, rotation=90, fontweight='bold')
     ax.set_yticklabels(ax.get_yticklabels(), fontsize=11, rotation=0,  fontweight='bold')
     ax.set_title(f'Correlation matrix — {feat} — historical events (n={n_ev})', fontsize=13)
-
     fig.tight_layout()
     out = os.path.join(OUT_DIR, f'corr_historical_{feat.replace(" ", "_")}.png')
     fig.savefig(out, dpi=150, bbox_inches='tight')
     plt.close()
     print(f'Saved: {out}')
 
-# ── Combined: average of 3 matrices, with zone boundary boxes ─────────────────
-corr_avg = pd.DataFrame(
-    np.mean([m.values for m in corr_matrices.values()], axis=0),
-    index=COUNTRIES, columns=COUNTRIES
-)
-corr_ordered = corr_avg.loc[ordered, ordered]
+# ── Combined plot with cluster boxes ─────────────────────────────────────────
+corr_ordered = corr_combined.loc[order, order]
 
 fig, ax = plt.subplots(figsize=(18, 16))
 sns.heatmap(
@@ -207,17 +204,20 @@ sns.heatmap(
     linewidths=0, linecolor='white',
 )
 
-start = 0
-for zone, countries in ZONES.items():
-    n = len(countries)
-    rect = mpatches.Rectangle((start, start), n, n,
+i = 0
+while i < len(ordered_clusters):
+    cl = ordered_clusters[i]
+    j  = i
+    while j < len(ordered_clusters) and ordered_clusters[j] == cl:
+        j += 1
+    size = j - i
+    rect = mpatches.Rectangle((i, i), size, size,
                                fill=False, edgecolor='black', linewidth=2.5)
     ax.add_patch(rect)
-    start += n
+    i = j
 
 ax.set_xticklabels(ax.get_xticklabels(), fontsize=11, rotation=90, fontweight='bold')
 ax.set_yticklabels(ax.get_yticklabels(), fontsize=11, rotation=0,  fontweight='bold')
-
 fig.tight_layout()
 out = os.path.join(OUT_DIR, 'corr_historical_combined.png')
 fig.savefig(out, dpi=150, bbox_inches='tight')
