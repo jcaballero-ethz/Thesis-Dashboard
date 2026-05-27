@@ -87,7 +87,7 @@ CSVs_and_JSONs/
     sp_flow_data_historical.json  # same for historical (~24 MB)
 ```
 
-**Not included in the repository** (files are too large for git):
+**Not included in the repository:**
 - ZEN-garden model outputs — stored locally at `~/Desktop/ZEN-garden model/outputs/`
 
 ---
@@ -98,12 +98,6 @@ All scripts require the `zen-garden-env` conda environment. To activate it:
 
 ```bash
 conda activate zen-garden-env
-```
-
-Or invoke Python directly:
-
-```bash
-/opt/anaconda3/envs/zen-garden-env/bin/python analysis/codigos/compute/script.py
 ```
 
 Additional dependencies (install once if missing):
