@@ -21,8 +21,10 @@ Inputs:
   - events_global_alpha{ALPHA:02d}.csv / events_global_historical_alpha{ALPHA:02d}.csv
 
 Outputs:
-  - CSVs/future/features/features_alpha25_climate_future_clustered.csv
-  - CSVs/historical/features/features_alpha25_climate_historical_clustered.csv
+  - CSVs_and_JSONs/future/features/features_alpha25_climate_future.csv
+  - CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
+  - CSVs_and_JSONs/historical/features/features_alpha25_climate_historical.csv
+  - CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
   - Silhouette and PCA scatter plots (saved to home directory)
 """
 
