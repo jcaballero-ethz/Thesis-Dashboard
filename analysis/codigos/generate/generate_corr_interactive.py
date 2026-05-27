@@ -8,11 +8,11 @@ Generates an interactive HTML with two views:
      on (1 - pairwise correlation) distance at threshold THRESH_CORR
 
 Inputs:
-  CSVs/future/features/features_alpha25_future_per_country.csv
-  CSVs/historical/features/features_historical_per_country.csv
+  CSVs_and_JSONs/future/features/features_alpha25_future_per_country.csv
+  CSVs_and_JSONs/historical/features/features_historical_per_country.csv
 
 Outputs:
-  htmls/htmls_uso/correlation_zones_interactive.html
+  analysis/htmls_uso/correlation_zones_interactive.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -40,7 +40,7 @@ DATASETS = {
 }
 
 OUT_HTML = os.path.expanduser(
-    '~/Desktop/Bachelor Thesis/analysis/correlation_zones_interactive.html')
+    '~/Desktop/Bachelor Thesis/analysis/htmls_uso/correlation_zones_interactive.html')
 
 ISO3 = {
     'AT':'AUT','BE':'BEL','BG':'BGR','CH':'CHE','CZ':'CZE',

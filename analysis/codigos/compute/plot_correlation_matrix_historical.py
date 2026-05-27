@@ -13,14 +13,14 @@ results and computes them (then caches to CSV for future runs).
 
 Inputs:
   ZEN-garden historical output folder  (if cache missing)
-  CSVs/historical/features/features_historical_per_country.csv  (cached per-country features)
-  CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv
+  CSVs_and_JSONs/historical/features/features_historical_per_country.csv  (cached per-country features)
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv
 
 Outputs:
-  htmls/fotos/historical/correlation_matrix/corr_historical_wind_anom.png
-  htmls/fotos/historical/correlation_matrix/corr_historical_pv_anom.png
-  htmls/fotos/historical/correlation_matrix/corr_historical_heat_anom.png
-  htmls/fotos/historical/correlation_matrix/corr_historical_combined.png  (average of 3 matrices, with zone boxes)
+  analysis/fotos/historical/correlation_matrix/corr_historical_wind_anom.png
+  analysis/fotos/historical/correlation_matrix/corr_historical_pv_anom.png
+  analysis/fotos/historical/correlation_matrix/corr_historical_heat_anom.png
+  analysis/fotos/historical/correlation_matrix/corr_historical_combined.png  (average of 3 matrices, with zone boxes)
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

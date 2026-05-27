@@ -9,12 +9,12 @@ Each figure has two panels:
   (b) events after applying cost_share ≥ 0.2% AND duration ≥ 1 day
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha25.csv
-  CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv
 
 Outputs:
-  htmls/fotos/future/filter_comparison_future_alpha25.png
-  htmls/fotos/historical/filter_comparison_historical_alpha25.png
+  analysis/fotos/future/filter_comparison_future_alpha25.png
+  analysis/fotos/historical/filter_comparison_historical_alpha25.png
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

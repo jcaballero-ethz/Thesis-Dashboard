@@ -9,8 +9,8 @@ Only events passing the standard quality filters are included:
   cost_share_cross >= 0.2%  AND  duration_days >= 1.0
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha25.csv
-  CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv
 
 Output:
   analysis/fotos/scatter_fut_vs_hist.png

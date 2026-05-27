@@ -6,8 +6,8 @@ for all stress events passing the standard quality filters at α = 25%.
 Points are colored by cost_share_cross (%).
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha25.csv
-  CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv
 
 Outputs:
   analysis/fotos/future/scatter_plots/cost_duration_scatter_future.png

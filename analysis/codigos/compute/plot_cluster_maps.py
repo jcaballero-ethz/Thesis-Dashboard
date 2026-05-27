@@ -13,16 +13,16 @@ Requires a Natural Earth shapefile at the path specified by SHAPEFILE.
 Colorscales replicate the Plotly RdBu stops used in the interactive HTML maps.
 
 Inputs:
-  CSVs/future/features/features_alpha25_climate_future_clustered.csv
-  CSVs/future/features/features_alpha25_operational_future_clustered.csv
-  CSVs/historical/features/features_alpha25_climate_historical_clustered.csv
-  CSVs/historical/features/features_alpha25_operational_historical_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv
 
 Outputs:
-  htmls/fotos/future/medoids/climate/medoid_{feature}_future.png        (3 PNGs)
-  htmls/fotos/future/medoids/operational/medoid_{feature}_future.png    (3 PNGs)
-  htmls/fotos/historical/medoids/climate/medoid_{feature}_historical.png      (3 PNGs)
-  htmls/fotos/historical/medoids/operational/medoid_{feature}_historical.png  (3 PNGs)
+  analysis/fotos/future/medoids/climate/medoid_{feature}_future.png        (3 PNGs)
+  analysis/fotos/future/medoids/operational/medoid_{feature}_future.png    (3 PNGs)
+  analysis/fotos/historical/medoids/climate/medoid_{feature}_historical.png      (3 PNGs)
+  analysis/fotos/historical/medoids/operational/medoid_{feature}_historical.png  (3 PNGs)
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

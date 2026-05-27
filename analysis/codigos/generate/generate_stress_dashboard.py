@@ -9,10 +9,10 @@ switch between thresholds without reloading the page.
 Also embeds links from filtered events (α=25%) to the shadow price / flow map.
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha{10..40}.csv  (7 files)
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{10..40}.csv  (7 files)
 
 Outputs:
-  htmls/htmls_uso/stress_events_multi_alpha.html
+  analysis/htmls_uso/stress_events_multi_alpha.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

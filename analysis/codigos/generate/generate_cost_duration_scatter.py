@@ -7,15 +7,15 @@ filtered event. Clicking a point shows its details (scenario, period, cluster,
 feature anomalies); clicking a second point compares the two.
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha25.csv
-  CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv
-  CSVs/future/features/features_alpha25_climate_future_clustered.csv
-  CSVs/future/features/features_alpha25_operational_future_clustered.csv
-  CSVs/historical/features/features_alpha25_climate_historical_clustered.csv
-  CSVs/historical/features/features_alpha25_operational_historical_clustered.csv
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv
+  CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv
 
 Outputs:
-  htmls/htmls_uso/cost_duration_scatter.html
+  analysis/htmls_uso/cost_duration_scatter.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

@@ -14,7 +14,7 @@ Inputs:
   ~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/sp_flow_data_future.json  (pre-computed by compute_sp_flow_data.py)
 
 Outputs:
-  htmls/htmls_uso/sp_flow_interactive.html
+  analysis/htmls_uso/sp_flow_interactive.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

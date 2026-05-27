@@ -13,7 +13,7 @@ Inputs:
   ~/Desktop/Bachelor Thesis/CSVs_and_JSONs/sp_flow_data_historical.json  (pre-computed by compute_sp_flow_data.py)
 
 Outputs:
-  htmls/htmls_uso/sp_flow_interactive_historical.html
+  analysis/htmls_uso/sp_flow_interactive_historical.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

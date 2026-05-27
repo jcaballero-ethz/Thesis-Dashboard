@@ -9,8 +9,8 @@ An event is "persistent" if it appears in the top-10 by cost_share_cross
 across the most α thresholds. Events are identified by (sc, t_start, t_end).
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha{10..40}.csv
-  CSVs/historical/events_global_alpha/events_global_historical_alpha{10..40}.csv
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{10..40}.csv
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{10..40}.csv
 
 Outputs:
   analysis/fotos/future/ratio_analysis_future.png

@@ -8,11 +8,11 @@ event concentrates more system cost per day. The dashboard shows:
   - Ratio distributions and how they shift with α
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha{10..40}.csv
-  CSVs/historical/events_global_alpha/events_global_historical_alpha{10..40}.csv
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{10..40}.csv
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{10..40}.csv
 
 Outputs:
-  htmls/htmls_uso/ratio_analysis.html
+  analysis/htmls_uso/ratio_analysis.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

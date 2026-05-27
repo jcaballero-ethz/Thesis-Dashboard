@@ -11,16 +11,16 @@ Run AFTER compute_clustering_climate.py and compute_clustering_operational.py ha
 their *_clustered.csv output files.
 
 Inputs:
-  CSVs/future/features/features_alpha25_climate_future_clustered.csv
-  CSVs/future/features/features_alpha25_operational_future_clustered.csv
-  CSVs/historical/features/features_alpha25_climate_historical_clustered.csv
-  CSVs/historical/features/features_alpha25_operational_historical_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv
 
 Outputs:
-  htmls/htmls_uso/europe_maps_climate_future.html
-  htmls/htmls_uso/europe_maps_climate_historical.html
-  htmls/htmls_uso/europe_maps_operational_future.html
-  htmls/htmls_uso/europe_maps_operational_historical.html
+  analysis/htmls_uso/europe_maps_climate_future.html
+  analysis/htmls_uso/europe_maps_climate_historical.html
+  analysis/htmls_uso/europe_maps_operational_future.html
+  analysis/htmls_uso/europe_maps_operational_historical.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

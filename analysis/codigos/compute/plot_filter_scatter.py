@@ -9,14 +9,14 @@ Used to visually motivate the choice of filter thresholds (cost_share ≥ 0.2%,
 duration ≥ 1 day) and to show how the event set changes with alpha.
 
 Inputs:
-  CSVs/future/events_global_alpha/events_global_alpha{XX}.csv   (7 files)
-  CSVs/historical/events_global_alpha/events_global_historical_alpha{XX}.csv  (7 files)
+  CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{XX}.csv   (7 files)
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{XX}.csv  (7 files)
 
 Outputs:
-  htmls/fotos/future/scatter_plots/filter_scatter_future_alpha{XX}.png      (7 PNGs)
-  htmls/fotos/future/scatter_plots/filter_scatter_future.png                (1 combined grid)
-  htmls/fotos/historical/scatter_plots/filter_scatter_historical_alpha{XX}.png  (7 PNGs)
-  htmls/fotos/historical/scatter_plots/filter_scatter_historical.png             (1 combined grid)
+  analysis/fotos/future/scatter_plots/filter_scatter_future_alpha{XX}.png      (7 PNGs)
+  analysis/fotos/future/scatter_plots/filter_scatter_future.png                (1 combined grid)
+  analysis/fotos/historical/scatter_plots/filter_scatter_historical_alpha{XX}.png  (7 PNGs)
+  analysis/fotos/historical/scatter_plots/filter_scatter_historical.png             (1 combined grid)
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

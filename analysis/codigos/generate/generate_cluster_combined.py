@@ -6,14 +6,14 @@ Generates 2 HTML files showing, for each stress event, the climate anomaly map
 The user can select an event and a feature from a dropdown; both maps update.
 
 Inputs:
-  CSVs/future/features/features_alpha25_climate_future_clustered.csv
-  CSVs/future/features/features_alpha25_operational_future_clustered.csv
-  CSVs/historical/features/features_alpha25_climate_historical_clustered.csv
-  CSVs/historical/features/features_alpha25_operational_historical_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv
 
 Outputs:
-  htmls/htmls_uso/europe_maps_combined_future.html
-  htmls/htmls_uso/europe_maps_combined_historical.html
+  analysis/htmls_uso/europe_maps_combined_future.html
+  analysis/htmls_uso/europe_maps_combined_historical.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

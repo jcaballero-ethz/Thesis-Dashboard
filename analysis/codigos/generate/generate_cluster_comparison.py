@@ -9,13 +9,13 @@ Each tab shows a scatter plot (PCA projection) with cluster colours and a bar
 chart of the mean feature anomalies per cluster.
 
 Inputs:
-  CSVs/future/features/features_alpha25_climate_future_clustered.csv
-  CSVs/future/features/features_alpha25_operational_future_clustered.csv
-  CSVs/historical/features/features_alpha25_climate_historical_clustered.csv
-  CSVs/historical/features/features_alpha25_operational_historical_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv
+  CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv
+  CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv
 
 Outputs:
-  htmls/htmls_uso/cluster_comparison.html
+  analysis/htmls_uso/cluster_comparison.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────

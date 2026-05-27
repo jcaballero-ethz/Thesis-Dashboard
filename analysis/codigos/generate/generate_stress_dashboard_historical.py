@@ -6,10 +6,10 @@ scenarios for each α threshold. Identical structure to the future dashboard:
 calendar view per scenario, alpha slider, cost-share colour scale.
 
 Inputs:
-  CSVs/historical/events_global_alpha/events_global_historical_alpha{10..40}.csv  (7 files)
+  CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{10..40}.csv  (7 files)
 
 Outputs:
-  htmls/htmls_uso/stress_events_multi_alpha_historical.html
+  analysis/htmls_uso/stress_events_multi_alpha_historical.html
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
