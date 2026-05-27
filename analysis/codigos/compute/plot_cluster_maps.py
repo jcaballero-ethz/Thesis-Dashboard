@@ -171,7 +171,7 @@ CONFIGS = {
             'pv anom':   'PV CF anomaly (%)',
             'heat anom': 'Heat demand anomaly (%)',
         },
-        'fixed_scale': {'wind anom': 100, 'pv anom': 100, 'heat anom': 100},
+        'fixed_scale': {'wind anom': 80, 'pv anom': 80, 'heat anom': 100},
         'datasets': {
             'future':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_climate_future_clustered.csv'),
             'historical': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_climate_historical_clustered.csv'),
@@ -236,11 +236,7 @@ for cl_type, cfg in CONFIGS.items():
         cluster_sizes = df_feat[cluster_col].value_counts().sort_index().to_dict()
 
         for feat in cfg['feat_types']:
-            wind     = feat in ('wind anom', 'pv anom')
-            heat     = feat == 'heat anom'
-            nettrans = feat == 'nettrans anom'
-            shared_cb = wind or heat or nettrans or feat == 'stor level anom' or feat == 'stor discharge anom'
-            absmax = 80 if wind else scale[feat]
+            absmax     = scale[feat]
             cmap, norm = get_cmap_norm(feat, absmax)
 
             fig, axes = plt.subplots(2, 2, figsize=(12, 9))
@@ -277,49 +273,30 @@ for cl_type, cfg in CONFIGS.items():
                 ax.set_ylim(Y_MIN, Y_MAX)
                 ax.set_aspect('equal')
                 ax.axis('off')
-
-                title = f'Cluster {cl_idx+1} (n = {n_ev})' if shared_cb else f'Cluster {cl_idx+1}'
-                color = 'black' if shared_cb else CLUSTER_COLORS[cl_idx]
-                ax.set_title(title, fontsize=11, fontweight='bold', color=color, pad=4)
-
-                if not shared_cb:
-                    sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
-                    sm.set_array([])
-                    cb = plt.colorbar(sm, ax=ax, fraction=0.032, pad=0.02, aspect=22)
-                    cb.ax.tick_params(labelsize=8)
+                ax.set_title(f'Cluster {cl_idx+1} (n = {n_ev})', fontsize=11,
+                             fontweight='bold', color='black', pad=4)
 
             feat_label = cfg['feat_labels'][feat]
-            if not shared_cb:
-                fig.suptitle(f'{feat_label} — {ds_name}', fontsize=13,
-                             fontweight='bold', y=1.01)
+            cb_labels = {
+                'wind anom':           'Wind CF anomaly (%)',
+                'pv anom':             'PV CF anomaly (%)',
+                'heat anom':           'Heat demand anomaly (%)',
+                'nettrans anom':       'Net transfer anomaly (GWh/h)',
+                'stor level anom':     'Storage level anomaly (GWh)',
+                'stor discharge anom': 'Storage discharge anomaly (GWh/h)',
+            }
 
-            if shared_cb:
-                fig.tight_layout()
-                # position colorbar just after the rightmost subplot
-                positions = [ax.get_position() for ax in axes.ravel()]
-                right = max(p.x1 for p in positions)
-                bottom = min(p.y0 for p in positions)
-                top    = max(p.y1 for p in positions)
-                cax = fig.add_axes([right + 0.01, bottom, 0.025, top - bottom])
-                sm2 = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
-                sm2.set_array([])
-                cb2 = fig.colorbar(sm2, cax=cax)
-                if feat == 'wind anom':
-                    cb_label = 'Wind CF anomaly (%)'
-                elif feat == 'pv anom':
-                    cb_label = 'PV CF anomaly (%)'
-                elif feat == 'heat anom':
-                    cb_label = 'Heat demand anomaly (%)'
-                elif feat == 'nettrans anom':
-                    cb_label = 'Net transfer anomaly (GWh/h)'
-                elif feat == 'stor level anom':
-                    cb_label = 'Storage level anomaly (GWh)'
-                else:
-                    cb_label = 'Storage rate anomaly (GW)'
-                cb2.set_label(cb_label, fontsize=10)
-                cb2.ax.tick_params(labelsize=9)
-            else:
-                fig.tight_layout()
+            fig.tight_layout()
+            positions = [ax.get_position() for ax in axes.ravel()]
+            right  = max(p.x1 for p in positions)
+            bottom = min(p.y0 for p in positions)
+            top    = max(p.y1 for p in positions)
+            cax = fig.add_axes([right + 0.01, bottom, 0.025, top - bottom])
+            sm  = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+            sm.set_array([])
+            cb  = fig.colorbar(sm, cax=cax)
+            cb.set_label(cb_labels[feat], fontsize=10)
+            cb.ax.tick_params(labelsize=9)
 
             slug = feat.replace(' ', '_')
             out  = os.path.join(OUT_DIR, ds_name, 'medoids', cl_type, f'medoid_{slug}_{ds_name}.png')
