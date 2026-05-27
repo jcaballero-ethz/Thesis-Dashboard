@@ -35,8 +35,8 @@ COUNTRIES = ['AT','BE','BG','CH','CZ','DE','DK','EE','EL','ES',
              'NO','PL','PT','RO','SE','SI','SK','UK']
 
 DATASETS = {
-    'future':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_future_per_country.csv'),
-    'historical': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_historical_per_country.csv'),
+    'future':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_future_per_country.csv'),
+    'historical': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_historical_per_country.csv'),
 }
 
 OUT_HTML = os.path.expanduser(

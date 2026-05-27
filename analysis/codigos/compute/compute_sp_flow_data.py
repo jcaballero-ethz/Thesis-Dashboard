@@ -24,13 +24,13 @@ THRESH_DUR = 1.0  # minimum duration (days) to keep an event
 DATASETS = {
     'future': {
         'path':       '~/Desktop/ZEN-garden model/outputs/20260202_GF_future_with_cooling',
-        'events_csv': f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv',
-        'out_json':   '~/Desktop/Bachelor Thesis/CSVs/future/sp_flow_data_future.json',
+        'events_csv': f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv',
+        'out_json':   '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/sp_flow_data_future.json',
     },
     'historical': {
         'path':       '~/Desktop/ZEN-garden model/outputs/20260202_GF_historical_with_cooling',
-        'events_csv': f'~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv',
-        'out_json':   '~/Desktop/Bachelor Thesis/CSVs/historical/sp_flow_data_historical.json',
+        'events_csv': f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv',
+        'out_json':   '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/sp_flow_data_historical.json',
     },
 }
 # ──────────────────────────────────────────────────────────────────────────────

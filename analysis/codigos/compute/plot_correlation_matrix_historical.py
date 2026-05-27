@@ -27,8 +27,8 @@ Outputs:
 # Output type: CSV data (features cache, if not yet computed) + PNG figures
 PATH         = '~/Desktop/ZEN-garden model/outputs/20260202_GF_historical_with_cooling'
 OUT_DIR      = '~/Desktop/Bachelor Thesis/analysis/fotos/historical/correlation_matrix'
-FEATURES_CSV = '~/Desktop/Bachelor Thesis/CSVs/historical/features/features_historical_per_country.csv'
-EVENTS_CSV   = '~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv'
+FEATURES_CSV = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_historical_per_country.csv'
+EVENTS_CSV   = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv'
 THRESH_CS    = 0.2   # minimum cost_share_cross (%) to keep an event
 THRESH_DUR   = 1.0   # minimum duration (days) to keep an event
 # ──────────────────────────────────────────────────────────────────────────────

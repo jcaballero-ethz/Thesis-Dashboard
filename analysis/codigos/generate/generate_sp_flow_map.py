@@ -11,7 +11,7 @@ For each hour within an event, the map shows:
 Run compute_sp_flow_data.py first to generate the required JSON cache.
 
 Inputs:
-  ~/Desktop/Bachelor Thesis/CSVs/future/sp_flow_data_future.json  (pre-computed by compute_sp_flow_data.py)
+  ~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/sp_flow_data_future.json  (pre-computed by compute_sp_flow_data.py)
 
 Outputs:
   htmls/htmls_uso/sp_flow_interactive.html
@@ -19,7 +19,7 @@ Outputs:
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Output type: HTML interactive
-JSON_PATH = '~/Desktop/Bachelor Thesis/CSVs/future/sp_flow_data_future.json'
+JSON_PATH = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/sp_flow_data_future.json'
 OUT_PATH  = '~/Desktop/Bachelor Thesis/analysis/htmls_uso/sp_flow_interactive.html'
 # ──────────────────────────────────────────────────────────────────────────────
 

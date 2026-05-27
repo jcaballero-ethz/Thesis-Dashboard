@@ -173,8 +173,8 @@ CONFIGS = {
         },
         'fixed_scale': {'wind anom': 80, 'pv anom': 80, 'heat anom': 100},
         'datasets': {
-            'future':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_climate_future_clustered.csv'),
-            'historical': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_climate_historical_clustered.csv'),
+            'future':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv'),
+            'historical': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv'),
         },
         'zones': {
             'future':     ZONES_FUTURE,
@@ -191,8 +191,8 @@ CONFIGS = {
         },
         'fixed_scale': {'stor discharge anom': 10},
         'datasets': {
-            'future':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_operational_future_clustered.csv'),
-            'historical': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_operational_historical_clustered.csv'),
+            'future':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv'),
+            'historical': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv'),
         },
         'zones': {
             'future':     ZONES_FUTURE,

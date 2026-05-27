@@ -45,8 +45,8 @@ DATASETS = [
     {
         'key':          'climate_future',
         'label':        'Climate · Future',
-        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_climate_future_clustered.csv'),
-        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv'),
+        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv'),
+        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv'),
         'cluster_col':  'cluster_climate',
         'feat_prefixes':['wind anom', 'pv anom', 'heat anom'],
         'feat_labels':  ['Wind Anomaly (%)', 'PV Anomaly (%)', 'Heat Anomaly (%)'],
@@ -55,8 +55,8 @@ DATASETS = [
     {
         'key':          'climate_historical',
         'label':        'Climate · Historical',
-        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_climate_historical_clustered.csv'),
-        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv'),
+        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv'),
+        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv'),
         'cluster_col':  'cluster_climate',
         'feat_prefixes':['wind anom', 'pv anom', 'heat anom'],
         'feat_labels':  ['Wind Anomaly (%)', 'PV Anomaly (%)', 'Heat Anomaly (%)'],
@@ -65,8 +65,8 @@ DATASETS = [
     {
         'key':          'operational_future',
         'label':        'Operational · Future',
-        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_operational_future_clustered.csv'),
-        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv'),
+        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv'),
+        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv'),
         'cluster_col':  'cluster_operational',
         'feat_prefixes':['nettrans anom', 'stor level anom', 'stor discharge anom'],
         'feat_labels':  ['Net Transfer Anomaly (GWh/h)', 'Storage Level Anomaly (GWh)', 'Storage Discharge Anomaly (GWh/h)'],
@@ -75,8 +75,8 @@ DATASETS = [
     {
         'key':          'operational_historical',
         'label':        'Operational · Historical',
-        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_operational_historical_clustered.csv'),
-        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv'),
+        'feat_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv'),
+        'ev_csv':       os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv'),
         'cluster_col':  'cluster_operational',
         'feat_prefixes':['nettrans anom', 'stor level anom', 'stor discharge anom'],
         'feat_labels':  ['Net Transfer Anomaly (GWh/h)', 'Storage Level Anomaly (GWh)', 'Storage Discharge Anomaly (GWh/h)'],

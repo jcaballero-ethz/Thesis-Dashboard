@@ -34,13 +34,13 @@ DATASETS = {
     'future': {
         'label': 'Future',
         'csv': lambda pct: os.path.expanduser(
-            f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{pct:02d}.csv'
-            if os.path.exists(os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{pct:02d}.csv'))
-            else f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{pct:02d}.csv'),
+            f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{pct:02d}.csv'
+            if os.path.exists(os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{pct:02d}.csv'))
+            else f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{pct:02d}.csv'),
     },
     'historical': {
         'label': 'Historical',
-        'csv': lambda pct: os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha{pct:02d}.csv'),
+        'csv': lambda pct: os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{pct:02d}.csv'),
     },
 }
 
@@ -53,7 +53,7 @@ def load_dfs(cfg):
         pct  = int(alpha * 100)
         path = cfg['csv'](pct)
         if not os.path.exists(path):
-            path = os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{pct:02d}.csv')
+            path = os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{pct:02d}.csv')
         dfs[alpha] = pd.read_csv(path)
     return dfs
 

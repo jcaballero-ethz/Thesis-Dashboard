@@ -17,8 +17,8 @@ Output:
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-FUT_CSV  = '~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv'
-HIST_CSV = '~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv'
+FUT_CSV  = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv'
+HIST_CSV = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv'
 OUT      = '~/Desktop/Bachelor Thesis/analysis/fotos/scatter_fut_vs_hist.png'
 THRESH_CS  = 0.2
 THRESH_DUR = 1.0

@@ -106,14 +106,14 @@ CONFIGS = {
         'fixed_scale': {'wind anom': 100, 'pv anom': 100, 'heat anom': 100},
         'datasets': {
             'future': {
-                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_climate_future_clustered.csv'),
-                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv'),
+                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv'),
+                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv'),
                 'out_html':   os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/europe_maps_climate_future.html'),
                 'zones':      ZONES_FUTURE,
             },
             'historical': {
-                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_climate_historical_clustered.csv'),
-                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv'),
+                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv'),
+                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv'),
                 'out_html':   os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/europe_maps_climate_historical.html'),
                 'zones':      ZONES_HISTORICAL,
             },
@@ -136,14 +136,14 @@ CONFIGS = {
         'fixed_scale': {'stor discharge anom': 10},
         'datasets': {
             'future': {
-                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_operational_future_clustered.csv'),
-                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv'),
+                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv'),
+                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv'),
                 'out_html':   os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/europe_maps_operational_future.html'),
                 'zones':      ZONES_FUTURE,
             },
             'historical': {
-                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_operational_historical_clustered.csv'),
-                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv'),
+                'feat_csv':   os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv'),
+                'events_csv': os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv'),
                 'out_html':   os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/europe_maps_operational_historical.html'),
                 'zones':      ZONES_HISTORICAL,
             },

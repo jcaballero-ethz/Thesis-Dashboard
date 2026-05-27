@@ -19,8 +19,8 @@ Outputs:
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Output type: PNG figures only
-FUT_CSV  = '~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv'
-HIST_CSV = '~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv'
+FUT_CSV  = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv'
+HIST_CSV = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv'
 OUT_DIR  = '~/Desktop/Bachelor Thesis/analysis/fotos/'
 COST_MIN = 0.2   # minimum cost_share_cross (%) to pass filter
 DUR_MIN  = 1.0   # minimum duration (days) to pass filter

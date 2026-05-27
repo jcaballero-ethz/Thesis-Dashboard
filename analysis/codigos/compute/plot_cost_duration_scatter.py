@@ -21,12 +21,12 @@ OUT_DIR    = '~/Desktop/Bachelor Thesis/analysis/fotos'
 DATASETS = {
     'future': {
         'label': 'Future',
-        'csv':   '~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv',
+        'csv':   '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv',
         'color': '#3498db',
     },
     'historical': {
         'label': 'Historical',
-        'csv':   '~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv',
+        'csv':   '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv',
         'color': '#e74c3c',
     },
 }

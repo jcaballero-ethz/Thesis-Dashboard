@@ -39,22 +39,22 @@ os.makedirs(os.path.join(OUT_DIR, 'historical', 'scatter_plots'), exist_ok=True)
 
 DATASETS = {
     'future': {
-        10: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha10.csv'),
-        15: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha15.csv'),
-        20: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha20.csv'),
-        25: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv'),
-        30: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha30.csv'),
-        35: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha35.csv'),
-        40: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha40.csv'),
+        10: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha10.csv'),
+        15: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha15.csv'),
+        20: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha20.csv'),
+        25: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv'),
+        30: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha30.csv'),
+        35: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha35.csv'),
+        40: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha40.csv'),
     },
     'historical': {
-        10: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha10.csv'),
-        15: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha15.csv'),
-        20: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha20.csv'),
-        25: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv'),
-        30: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha30.csv'),
-        35: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha35.csv'),
-        40: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha40.csv'),
+        10: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha10.csv'),
+        15: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha15.csv'),
+        20: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha20.csv'),
+        25: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv'),
+        30: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha30.csv'),
+        35: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha35.csv'),
+        40: os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha40.csv'),
     },
 }
 

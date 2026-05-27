@@ -110,16 +110,16 @@ OPERATIONAL_FEATS = {
 
 DATASETS = {
     'future': {
-        'climate_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_climate_future_clustered.csv'),
-        'operational_csv': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_operational_future_clustered.csv'),
-        'events_csv':      os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv'),
+        'climate_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv'),
+        'operational_csv': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv'),
+        'events_csv':      os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{ALPHA:02d}.csv'),
         'out_html':        os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/europe_maps_combined_future.html'),
         'zones':           ZONES_FUTURE,
     },
     'historical': {
-        'climate_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_climate_historical_clustered.csv'),
-        'operational_csv': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_operational_historical_clustered.csv'),
-        'events_csv':      os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv'),
+        'climate_csv':     os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv'),
+        'operational_csv': os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv'),
+        'events_csv':      os.path.expanduser(f'~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha{ALPHA:02d}.csv'),
         'out_html':        os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/europe_maps_combined_historical.html'),
         'zones':           ZONES_HISTORICAL,
     },

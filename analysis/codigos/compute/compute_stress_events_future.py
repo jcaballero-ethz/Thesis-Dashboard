@@ -14,7 +14,7 @@ Inputs:
   ZEN-garden future output folder (PATH)
 
 Outputs:
-  ~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha{XX}.csv
+  ~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha{XX}.csv
   One CSV per alpha value, with columns:
     rank, sc, t_start, t_end, duration_days, event_cost, cost_share_cross
 """
@@ -25,7 +25,7 @@ PATH          = '~/Desktop/ZEN-garden model/outputs/20260202_GF_future_with_cool
 SCENARIOS     = list(range(1, 61))       # scenario indices to process
 GAP_THRESHOLD = 48                       # max gap (hours) between selected timesteps within one event
 ALPHAS        = [0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40]  # cost-coverage fractions to sweep
-OUT_DIR       = '~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha'
+OUT_DIR       = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha'
 # ──────────────────────────────────────────────────────────────────────────────
 
 import logging

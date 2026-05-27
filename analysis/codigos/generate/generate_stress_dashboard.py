@@ -18,7 +18,7 @@ Outputs:
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Output type: HTML interactive
 ALPHAS   = [0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40]
-IN_DIR   = '~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha'
+IN_DIR   = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha'
 OUT_HTML = '~/Desktop/Bachelor Thesis/analysis/htmls_uso/stress_events_multi_alpha.html'
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -69,7 +69,7 @@ js_data   = json.dumps({str(k): {str(s): v for s, v in d.items()}
 alpha_list = json.dumps([int(a*100) for a in ALPHAS])
 
 # ── Build SP flow event lookup (α=25%, cost_share≥0.2, duration≥1d) ───────────
-sp_ev_path = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv')
+sp_ev_path = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv')
 sp_ev = {}
 if os.path.exists(sp_ev_path):
     sp_df = pd.read_csv(sp_ev_path)

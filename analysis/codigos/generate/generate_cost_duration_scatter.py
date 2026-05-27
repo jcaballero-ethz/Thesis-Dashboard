@@ -31,12 +31,12 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 OUT_HTML      = os.path.expanduser(OUT_HTML)
-FUT_CSV       = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/events_global_alpha/events_global_alpha25.csv')
-HIST_CSV      = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/events_global_alpha/events_global_historical_alpha25.csv')
-FUT_CLIM_CSV  = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_climate_future_clustered.csv')
-HIST_CLIM_CSV = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_climate_historical_clustered.csv')
-FUT_OP_CSV    = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_operational_future_clustered.csv')
-HIST_OP_CSV   = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/historical/features/features_alpha25_operational_historical_clustered.csv')
+FUT_CSV       = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv')
+HIST_CSV      = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv')
+FUT_CLIM_CSV  = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_climate_future_clustered.csv')
+HIST_CLIM_CSV = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_climate_historical_clustered.csv')
+FUT_OP_CSV    = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_operational_future_clustered.csv')
+HIST_OP_CSV   = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/features/features_alpha25_operational_historical_clustered.csv')
 OUT_HTML         = os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/htmls_uso/cost_duration_scatter.html')
 
 ZONES_FUT  = ['Nordics_N','Baltics','Nordics_S','British_Isles','NW_Continent',

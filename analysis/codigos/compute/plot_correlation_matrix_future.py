@@ -20,7 +20,7 @@ Outputs:
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Output type: PNG figures only
-CSV     = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs/future/features/features_alpha25_future_per_country.csv')
+CSV     = os.path.expanduser('~/Desktop/Bachelor Thesis/CSVs_and_JSONs/future/features/features_alpha25_future_per_country.csv')
 OUT_DIR = os.path.expanduser('~/Desktop/Bachelor Thesis/analysis/fotos/future/correlation_matrix')
 # ──────────────────────────────────────────────────────────────────────────────
 
