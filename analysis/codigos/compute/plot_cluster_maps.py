@@ -304,4 +304,88 @@ for cl_type, cfg in CONFIGS.items():
             plt.close()
             print(f'Saved: {out}')
 
+# ── Cluster medoids grid: one PNG per (cl_type × dataset) ────────────────────
+for cl_type, cfg in CONFIGS.items():
+    for ds_name in ('future', 'historical'):
+        feat_csv = cfg['datasets'][ds_name]
+        zones    = cfg['zones'][ds_name]
+
+        if not os.path.exists(feat_csv):
+            print(f'SKIP: {feat_csv} not found.')
+            continue
+
+        df_feat       = pd.read_csv(feat_csv)
+        meta_cols     = ['sc', 't_start', 't_end']
+        cluster_col   = cfg['cluster_col']
+        zone_names    = list(zones.keys())
+        medoids       = compute_medoids(df_feat, cluster_col, meta_cols)
+        scale         = build_scale(df_feat, cfg['feat_types'], cfg['fixed_scale'], zone_names)
+        cluster_sizes = df_feat[cluster_col].value_counts().sort_index().to_dict()
+
+        feat_types = cfg['feat_types']
+        n_feat     = len(feat_types)
+
+        fig = plt.figure(figsize=(17, 3.5 * n_feat))
+        gs  = fig.add_gridspec(n_feat, 5, width_ratios=[1, 1, 1, 1, 0.06],
+                               wspace=0.04, hspace=0.18)
+        map_axes = [[fig.add_subplot(gs[r, c]) for c in range(4)] for r in range(n_feat)]
+        cb_axes  = [fig.add_subplot(gs[r, 4])  for r in range(n_feat)]
+
+        for row_idx, feat in enumerate(feat_types):
+            absmax     = scale[feat]
+            cmap, norm = get_cmap_norm(feat, absmax)
+
+            for cl_idx in range(4):
+                ax       = map_axes[row_idx][cl_idx]
+                row_vals = df_feat.iloc[medoids[cl_idx]]
+                n_ev     = cluster_sizes.get(cl_idx, 0)
+
+                val_map = {}
+                for zone, countries in zones.items():
+                    col = f'{feat} {zone}'
+                    if col in row_vals.index:
+                        v = float(row_vals[col])
+                        for c in countries:
+                            iso = CODE_MAP.get(c)
+                            if iso:
+                                val_map[iso] = v
+
+                europe_plot = europe.copy()
+                europe_plot['val'] = europe_plot['ADM0_A3'].map(val_map)
+                europe_plot[europe_plot['val'].isna()].plot(
+                    ax=ax, color='#eeeeee', edgecolor='#aaaaaa', linewidth=0.3,
+                )
+                modelled = europe_plot[europe_plot['val'].notna()]
+                if not modelled.empty:
+                    modelled.plot(
+                        ax=ax, column='val', cmap=cmap, norm=norm,
+                        edgecolor='white', linewidth=0.5,
+                    )
+                ax.set_xlim(X_MIN, X_MAX)
+                ax.set_ylim(Y_MIN, Y_MAX)
+                ax.set_aspect('equal')
+                ax.axis('off')
+
+                if row_idx == 0:
+                    ax.set_title(f'Cluster {cl_idx+1}  (n = {n_ev})',
+                                 fontsize=10, fontweight='bold', color='black', pad=6)
+
+            map_axes[row_idx][0].annotate(
+                cfg['feat_labels'][feat],
+                xy=(0, 0.5), xycoords='axes fraction',
+                xytext=(-8, 0), textcoords='offset points',
+                fontsize=9, va='center', ha='right', rotation=90,
+            )
+
+            sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+            sm.set_array([])
+            cb = fig.colorbar(sm, cax=cb_axes[row_idx])
+            cb.ax.tick_params(labelsize=7)
+
+        out = os.path.join(OUT_DIR, ds_name, 'medoids', cl_type,
+                           f'cluster_medoids_{cl_type}_{ds_name}.png')
+        fig.savefig(out, dpi=150, bbox_inches='tight')
+        plt.close()
+        print(f'Saved: {out}')
+
 print('\nDone.')
