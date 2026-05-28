@@ -180,7 +180,7 @@ Per-country feature table used for correlation analysis (zone definition). One r
 
 All HTMLs are in `analysis/htmls_uso/`. They must be served via HTTP — see [Viewing the dashboard](#viewing-the-dashboard).
 
-> **`thesis_dashboard.html`** is a hand-written iframe shell that embeds all the other HTML files as tabs. It does not generate any content of its own — each tab loads one of the files listed below. This is the only file you need to open; the rest are loaded automatically when you click their tab.
+**`thesis_dashboard.html`** is a hand-written iframe shell that embeds all the other HTML files as tabs. It does not generate any content of its own — each tab loads one of the files listed below. This is the only file you need to open; the rest are loaded automatically when you click their tab.
 
 | File | What it shows |
 |------|---------------|
