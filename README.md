@@ -80,6 +80,7 @@ analysis/
     compute/    # scripts that read ZEN-garden outputs and write CSVs / PNGs
     generate/   # scripts that read CSVs / JSONs and write interactive HTML files
   htmls_uso/    # all interactive HTML visualizations (served via HTTP)
+  shapefiles/   # Natural Earth 10m country polygons (used by plot_cluster_maps.py)
   fotos/
     future/
       medoids/
