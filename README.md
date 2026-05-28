@@ -153,7 +153,7 @@ Climate feature table for events at α = 25%, after clustering. One row per even
 | `pv anom {zone}` | PV capacity factor anomaly (percentage) |
 | `heat anom {zone}` | Heat demand anomaly (percentage) |
 | `sc`, `t_start`, `t_end` | Event identifier |
-| `cluster_climate` | Climate cluster label (1–4) assigned by K-Medoids |
+| `cluster_climate` | Climate cluster label (0–3) assigned by K-Medoids |
 
 The 13 zones are defined by inspecting the Ward-ordered combined correlation matrix produced by `plot_correlation_matrix_future/historical.py`, and are hard-coded in `compute_clustering_climate.py` and `compute_clustering_operational.py`.
 
@@ -167,9 +167,9 @@ Operational feature table for events at α = 25%, after clustering. One row per 
 | `stor level anom {zone}` | Storage level anomaly (GWh) for each of the 13 zones |
 | `stor discharge anom {zone}` | Storage discharge anomaly (GWh/h) for each of the 13 zones |
 | `sc`, `t_start`, `t_end` | Event identifier |
-| `cluster_operational` | Operational cluster label (1–4) assigned by K-Medoids |
+| `cluster_operational` | Operational cluster label (0–3) assigned by K-Medoids |
 
-### `CSVs_and_JSONs/{future|historical}/features/features_alpha25_{future|historical}_per_country.csv`
+### `CSVs_and_JSONs/future/features/features_alpha25_future_per_country.csv` / `CSVs_and_JSONs/historical/features/features_historical_per_country.csv`
 
 Per-country feature table used for correlation analysis (zone definition). One row per event, one column group per country (27 countries), where `{CC}` is the 2-letter country code (e.g. `DE`, `FR`). Columns per country:
 - `wind anom {CC}`, `pv anom {CC}`, `heat anom {CC}` — anomalies (percentage)
