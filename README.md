@@ -173,7 +173,6 @@ Operational feature table for events at α = 25%, after clustering. One row per 
 
 Per-country feature table used for correlation analysis (zone definition). One row per event, one column group per country (27 countries), where `{CC}` is the 2-letter country code (e.g. `DE`, `FR`). Columns per country:
 - `wind anom {CC}`, `pv anom {CC}`, `heat anom {CC}` — anomalies (percentage)
-- `stor rate {CC}`, `stor diff {CC}` — storage metrics
 
 ---
 
