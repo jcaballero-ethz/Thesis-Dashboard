@@ -22,6 +22,8 @@ http://localhost:8000/htmls_uso/thesis_dashboard.html
 
 No additional dependencies or model outputs are needed to view the dashboard — all CSVs, JSONs, and HTMLs are included in the repository.
 
+To modify the visualizations, edit the corresponding `generate_*.py` script in `analysis/codigos/generate/` and re-run it — this regenerates the HTML in `analysis/htmls_uso/`. No ZEN-garden model outputs are needed for this; only the packages listed in the [Python environment](#python-environment) section.
+
 ---
 
 ## Overview
