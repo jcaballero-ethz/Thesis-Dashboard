@@ -155,7 +155,7 @@ Climate feature table for events at α = 25%, after clustering. One row per even
 | `sc`, `t_start`, `t_end` | Event identifier |
 | `cluster_climate` | Climate cluster label (1–4) assigned by K-Medoids |
 
-The 13 zones are defined by inspecting the Ward-ordered combined correlation matrix (average of wind, PV, and heat anomaly correlations across the 27 countries): Nordics_N, Nordics_S, Baltics, British_Isles, NW_Continent, Central_W, Central_E, East_N, Iberia, Med_East_N, Med_East_S, Italy, Greece.
+The 13 zones are defined by inspecting the Ward-ordered combined correlation matrix produced by `plot_correlation_matrix_future/historical.py`, and are hard-coded in `compute_clustering_climate.py` and `compute_clustering_operational.py`.
 
 ### `CSVs_and_JSONs/{future|historical}/features/features_alpha25_operational_{future|historical}_clustered.csv`
 
