@@ -27,7 +27,7 @@ Outputs:
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Output type: PNG figures only  (12 PNGs: 6 feature types × 2 datasets)
-SHAPEFILE = '~/Desktop/shapefiles/ne_10m_admin_0_countries.shp'
+SHAPEFILE = '~/Desktop/Bachelor Thesis/analysis/shapefiles/ne_10m_admin_0_countries.shp'
 OUT_DIR   = '~/Desktop/Bachelor Thesis/analysis/fotos'
 # ──────────────────────────────────────────────────────────────────────────────
 
