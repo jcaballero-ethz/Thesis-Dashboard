@@ -199,7 +199,7 @@ All HTMLs are in `analysis/htmls_uso/`. They must be served via HTTP — see [Vi
 | `cluster_comparison.html` | Side-by-side comparison of future vs historical cluster profiles. |
 | `correlation_zones_interactive.html` | Interactive correlation matrix of country-level wind, PV, and heat anomalies across 27 countries, used to justify the 13-zone definition. |
 | `cost_duration_scatter.html` | Scatter plot: event cost vs duration, coloured by cluster, for both datasets. |
-| `ratio_analysis.html` | Ratio of renewable generation to demand during events vs scenario average. |
+| `ratio_analysis.html` | Intensity ratio ρ = cost share / duration (% per day) for the top-10 most persistent events across α thresholds, for both datasets. Shows how event cost intensity varies with duration. |
 
 ---
 
