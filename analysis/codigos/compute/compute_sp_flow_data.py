@@ -8,7 +8,8 @@ interactive map HTML.
 
 Inputs:
   - ZEN-garden output folders (future + historical)
-  - events_global_alpha25.csv / events_global_historical_alpha25.csv
+  - CSVs_and_JSONs/future/events_global_alpha/events_global_alpha25.csv
+  - CSVs_and_JSONs/historical/events_global_alpha/events_global_historical_alpha25.csv
 
 Outputs:
   CSVs_and_JSONs/future/sp_flow_data_future.json

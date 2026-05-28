@@ -42,7 +42,7 @@ N_DAYS = 365
 MS = [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335]
 MN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 
-SS0, SS1 = 151, 243   # spring/summer band (0-indexed days 152–243)
+SS0, SS1 = 151, 243   # spring/summer band: days 152–244 (1-indexed)
 
 # ── Load & thresholds ─────────────────────────────────────────────────────────
 df_fut  = pd.read_csv(FUT_CSV)
