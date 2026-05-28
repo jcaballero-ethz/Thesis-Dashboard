@@ -10,7 +10,7 @@ stress event. Identical structure to the future version:
 Run compute_sp_flow_data.py first to generate the required JSON cache.
 
 Inputs:
-  ~/Desktop/Bachelor Thesis/CSVs_and_JSONs/sp_flow_data_historical.json  (pre-computed by compute_sp_flow_data.py)
+  ~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/sp_flow_data_historical.json  (pre-computed by compute_sp_flow_data.py)
 
 Outputs:
   analysis/htmls_uso/sp_flow_interactive_historical.html
@@ -18,7 +18,7 @@ Outputs:
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Output type: HTML interactive
-JSON_PATH = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/sp_flow_data_historical.json'
+JSON_PATH = '~/Desktop/Bachelor Thesis/CSVs_and_JSONs/historical/sp_flow_data_historical.json'
 OUT_PATH  = '~/Desktop/Bachelor Thesis/analysis/htmls_uso/sp_flow_interactive_historical.html'
 # ──────────────────────────────────────────────────────────────────────────────
 

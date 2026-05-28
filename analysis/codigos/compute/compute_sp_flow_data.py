@@ -11,8 +11,8 @@ Inputs:
   - events_global_alpha25.csv / events_global_historical_alpha25.csv
 
 Outputs:
-  CSVs/sp_flow_data_future.json
-  CSVs/sp_flow_data_historical.json
+  CSVs_and_JSONs/future/sp_flow_data_future.json
+  CSVs_and_JSONs/historical/sp_flow_data_historical.json
 """
 
 # ── Configuration ─────────────────────────────────────────────────────────────
