@@ -550,9 +550,11 @@ Full API documentation: https://zen-garden.readthedocs.io/en/latest/files/tutori
 
 If you want to continue this analysis, here are the most natural next steps:
 
-- **Change α or filtering thresholds:** update the constants at the top of the relevant scripts (see table above) and re-run from Step 1 or Step 2 depending on which threshold you changed.
-- **Add a new feature to clustering:** add the feature computation in `compute_clustering_climate.py` or `compute_clustering_operational.py`, re-run from Step 2 onwards.
-- **Add a new country or zone:** update the zone definition in the clustering scripts and re-run from Step 2.
+Any change that affects the underlying data (new α threshold, new feature, new clustering) requires two stages: first re-run the relevant `compute/` scripts to update the CSVs, then re-run the relevant `generate/` scripts to rebuild the HTML files so the dashboard reflects the new data.
+
+- **Change α or filtering thresholds:** add the new value to `ALPHAS` in `compute_stress_events_*.py` and re-run Step 1 to generate the new CSV; then add it to `ALPHAS` in the relevant `generate_stress_dashboard*.py` and re-run Step 5.
+- **Add a new feature to clustering:** add the feature computation in `compute_clustering_climate.py` or `compute_clustering_operational.py` and re-run Step 2; then update the corresponding `generate_cluster_maps.py` or `generate_cluster_combined.py` and re-run Step 5.
+- **Add a new country or zone:** update the zone definition in the clustering scripts and re-run from Step 2, then re-run Step 5.
 - **Add a new HTML visualization:** create a new `generate_*.py` script in `analysis/codigos/generate/`, then add a tab for it in `analysis/htmls_uso/thesis_dashboard.html`.
 - **Use a different dataset:** update the `path` entries in the `DATASETS` dict at the top of each compute script, then re-run the full pipeline.
 - **Try different clustering algorithms:** the clustering logic is in `compute_clustering_climate.py` and `compute_clustering_operational.py`. The silhouette score loop is already in the script — adapt it to compare algorithms.
