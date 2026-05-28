@@ -123,6 +123,8 @@ Additional dependencies (install once if missing):
 pip install scikit-learn-extra geopandas seaborn
 ```
 
+`plot_cluster_maps.py` additionally requires a Natural Earth shapefile at `~/Desktop/shapefiles/ne_10m_admin_0_countries.shp` (not included in the repository). Download it from [naturalearthdata.com](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/) and place it at that path, or update the `SHAPEFILE` constant at the top of the script. The output PNGs are already committed, so this step can be skipped if you only want to view results.
+
 ---
 
 ## CSVs and JSONs — what they contain
